@@ -9,55 +9,11 @@
     <title>New Document</title>
 </head>
 <body>
-    <div class="container">
     <section>
-        <form class="well">
+        <form class="form-horizontal well">
             <fieldset>
-                <legend>Listas Recentes</legend>
-
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th width="20">&nbsp;</th>
-                            <th>Data</th>
-                            <th>Qtd Produtos</th>
-                            <th>Supermercado</th>
-                            <th width="20">&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input name="listas" id="1" type="radio"/></td>
-                            <td><label for="1">11/04/2012</label></td>
-                            <td>20</td>
-                            <td>Guanabara</td>
-                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td><input name="listas" id="2" type="radio"/></td>
-                            <td><label for="2">02/04/2012</label></td>
-                            <td>27</td>
-                            <td>Extra</td>
-                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td><input name="listas" id="3" type="radio"/></td>
-                            <td><label for="3">29/03/2012</label></td>
-                            <td>18</td>
-                            <td>Prezunic</td>
-                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </fieldset>
-        </form>
-        
-        <form class="well">
-            <fieldset>
-                <legend>Nova lista</legend>
-                
-                <div class="control-group" style="margin-top:0px">
+                <legend>Lista de Compras</legend>
+                <div class="control-group">
                     <label class="control-label" for="groups">Grupo</label>
                     <div class="controls">
                         <select id="groups">
@@ -103,7 +59,7 @@
 
                         <div class="row">
                             <div class="span" >
-                                <a class="btn btn-primary btn-large" style="padding:7px 14px" href="#"><i class="icon-plus icon-white"></i> Adicionar</a>                        
+                                <a class="btn btn-info btn-large" style="padding:7px 14px" href="#"><i class="icon-plus icon-white"></i> Adicionar</a>                        
                             </div>
                             <div class="span4">
                                 <div class="pagination" style="margin:0">
@@ -123,8 +79,9 @@
                 </div>
                 
                 
+                
                 <div class="control-group">
-                    <label class="control-label">Lista</label>
+                    <label class="control-label" for="groups">Lista</label>
                     <div class="controls">
                             
                         <table class="table table-bordered table-striped">
@@ -140,19 +97,19 @@
                                 <tr>
                                     <td><input id="10" type="checkbox"/></td>
                                     <td><label for="10">P&atilde;o de Forma Plus Vita</label></td>
-                                    <td><input class="input-mini" type="number" name="quantity" min="0" max="50" /></td>
+                                    <td><input type="number" name="quantity" min="0" max="50" /></td>
                                     <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-remove icon-white"></i></a></td>
                                 </tr>
                                 <tr>
                                     <td><input id="20" type="checkbox"/></td>
                                     <td><label for="20">Nescau</label></td>
-                                    <td><input class="input-mini" type="number" name="quantity" min="0" max="50" /></td>
+                                    <td><input type="number" name="quantity" min="0" max="50" /></td>
                                     <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-remove icon-white"></i></a></td>
                                 </tr>
                                 <tr>
                                     <td><input id="30" type="checkbox"/></td>
                                     <td><label for="30">Arroz Tio Jo&atilde;o</label></td>
-                                    <td><input class="input-mini" type="number" name="quantity" min="0" max="50" /></td>
+                                    <td><input type="number" name="quantity" min="0" max="50" /></td>
                                     <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-remove icon-white"></i></a></td>
                                 </tr>
                             </tbody>
@@ -160,7 +117,7 @@
                         
                         <div class="row">
                             <div class="span" >
-                                <a class="btn btn-success btn-large" style="padding:7px 14px" href="#"><i class="icon-ok icon-white"></i> Salvar e Imprimir</a>                        
+                                <a class="btn btn-success btn-large" style="padding:7px 14px" href="#"><i class="icon-ok icon-white"></i> Salvar</a>                        
                             </div>
                         </div>
                             
@@ -169,6 +126,5 @@
             </fieldset>
         </form>
     </section>
-    </div>
 </body>
 </html>
