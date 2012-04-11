@@ -4,127 +4,49 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="bootstrap/css/docs.css" />
     <script src="bootstrap/js/bootstrap.min.js"></script>
     
     <title>New Document</title>
 </head>
 <body>
+  <div class="container">  
+    <header>
+        <div class="hero-unit">
+            <h1>Guanabara</h1>
+            <p>&Eacute; o mais indicado para sua lista.</p>
+        </div>
+    </header>
+    
     <section>
-        <form class="form-horizontal well">
-            <fieldset>
-                <legend>Lista de Compras</legend>
-                <div class="control-group">
-                    <label class="control-label" for="groups">Grupo</label>
-                    <div class="controls">
-                        <select id="groups">
-                            <option>Alimentos</option>
-                            <option>Bebidas</option>
-                            <option>Carnes</option>
-                            <option>Frutas e Verduras</option>
-                            <option>Padaria</option>
-                            <option>Higiene</option>
-                            <option>Laticinios</option>
-                            <option>Limpeza</option>
-                            <option>Outros</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="control-group">
-                    <label class="control-label" for="groups">Produtos</label>
-                    <div class="controls">
-
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th width="20">&nbsp;</th>
-                                    <th>Descri&ccedil;&atilde;o</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input id="1" type="checkbox"/></td>
-                                    <td><label for="1">P&atilde;o de Forma Plus Vita</label></td>
-                                </tr>
-                                <tr>
-                                    <td><input id="2" type="checkbox"/></td>
-                                    <td><label for="2">Nescau</label></td>
-                                </tr>
-                                <tr>
-                                    <td><input id="3" type="checkbox"/></td>
-                                    <td><label for="3">Arroz Tio Jo&atilde;o</label></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="row">
-                            <div class="span" >
-                                <a class="btn btn-info btn-large" style="padding:7px 14px" href="#"><i class="icon-plus icon-white"></i> Adicionar</a>                        
-                            </div>
-                            <div class="span4">
-                                <div class="pagination" style="margin:0">
-                                    <ul>
-                                        <li class="disabled"><a href="#">«</a></li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">»</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                
-                
-                
-                <div class="control-group">
-                    <label class="control-label" for="groups">Lista</label>
-                    <div class="controls">
-                            
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th width="20">&nbsp;</th>
-                                    <th>Produto</th>
-                                    <th>Quantidade</th>
-                                    <th width="20">&nbsp;</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input id="10" type="checkbox"/></td>
-                                    <td><label for="10">P&atilde;o de Forma Plus Vita</label></td>
-                                    <td><input type="number" name="quantity" min="0" max="50" /></td>
-                                    <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-remove icon-white"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td><input id="20" type="checkbox"/></td>
-                                    <td><label for="20">Nescau</label></td>
-                                    <td><input type="number" name="quantity" min="0" max="50" /></td>
-                                    <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-remove icon-white"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td><input id="30" type="checkbox"/></td>
-                                    <td><label for="30">Arroz Tio Jo&atilde;o</label></td>
-                                    <td><input type="number" name="quantity" min="0" max="50" /></td>
-                                    <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-remove icon-white"></i></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <div class="row">
-                            <div class="span" >
-                                <a class="btn btn-success btn-large" style="padding:7px 14px" href="#"><i class="icon-ok icon-white"></i> Salvar</a>                        
-                            </div>
-                        </div>
-                            
-                    </div>
-                </div>
-            </fieldset>
-        </form>
+        
+        
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th rowspan="2" colspan="1">Descri&ccedil;&atilde;o</th>
+                    <th rowspan="2" colspan="1">Quantidade</th>
+                    <th>Pre&ccedil;os</th>
+                    <th rowspan="2" colspan="1" width="20">&nbsp;</th>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th>Guanabara</th>
+                    <th>Extra</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>P&atilde;o de Forma Plus Vita</td>
+                    <td>20</td>
+                    <td>Guanabara</td>
+                    <td><input name="listas" id="1" type="checkbox"/></td>
+                </tr>
+            </tbody>
+        </table>
+        
     </section>
+  </div>
 </body>
 </html>
