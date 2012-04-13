@@ -4,7 +4,20 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.18.custom.css" />
+    <!--
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    -->
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/jquery-ui-1.8.18.custom.min.js"></script>
+    
+    <script>
+    $(function() {
+		$( "#prods, #list" ).sortable({
+			connectWith: ".connectedSortable"
+		}).disableSelection();
+	});
+	</script>
     
     <title>New Document</title>
 </head>
@@ -75,10 +88,10 @@
                 </div>
                 
                 <div class="control-group">
-                    <label class="control-label" for="groups">Produtos</label>
+                    <label class="control-label">Produtos</label>
                     <div class="controls">
 
-                        <table class="table table-bordered table-striped">
+                        <table id="produtos" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th width="20">&nbsp;</th>
@@ -125,7 +138,7 @@
                     <label class="control-label">Lista</label>
                     <div class="controls">
                             
-                        <table class="table table-bordered">
+                        <table id="lista" class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Produto</th>
@@ -133,7 +146,7 @@
                                     <th width="20">&nbsp;</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="connectedSortable">
                                 <tr>
                                     <td>P&atilde;o de Forma Plus Vita</td>
                                     <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
@@ -162,6 +175,23 @@
                 </div>
             </fieldset>
         </form>
+        
+        <ul id="prods" class="connectedSortable">
+	<li class="ui-state-default">Item 1</li>
+	<li class="ui-state-default">Item 2</li>
+	<li class="ui-state-default">Item 3</li>
+	<li class="ui-state-default">Item 4</li>
+	<li class="ui-state-default">Item 5</li>
+</ul>
+
+<ul id="list" class="connectedSortable">
+	<li class="ui-state-highlight">Item 1</li>
+	<li class="ui-state-highlight">Item 2</li>
+	<li class="ui-state-highlight">Item 3</li>
+	<li class="ui-state-highlight">Item 4</li>
+	<li class="ui-state-highlight">Item 5</li>
+</ul>
+        
     </section>
     </div>
 </body>
