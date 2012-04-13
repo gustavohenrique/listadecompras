@@ -11,10 +11,47 @@
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/jquery-ui-1.8.18.custom.min.js"></script>
     
+    <style type="text/css">
+    ul.table-bordered {
+        border-radius: 4px;
+        border-left: 1px solid #DDDDDD;
+        list-style-type: none;
+        margin: 0;
+    }
+    /* ul.table-bordered li:first-child { */
+    ul.table-bordered li:first-child {
+        border-top: 0 none;
+        vertical-align: bottom;
+    }
+    
+    ul.table-bordered li.th {
+        font-weight: bold;
+        background: #efefef;
+    }
+
+    ul.table li {
+        border-top: 1px solid #DDDDDD;
+        height: 18px;
+        padding: 8px;
+        text-align: left;
+        vertical-align: top;
+        background: white;
+    }
+    .ui-state-highlight { 
+        background: yellow;
+        height: 18px;
+        padding: 8px;
+    }
+    </style>
+    
     <script>
     $(function() {
-		$( "#produtos tbody, #lista tbody" ).sortable({
-			connectWith: ".connectedSortable tbody"
+		$( '#produtos, #lista' ).sortable({
+			connectWith: '.connectedSortable',
+            cancel: '.th',
+            cursor: 'move',
+            placeholder: 'ui-state-highlight',
+            forcePlaceholderSize: true,
 		}).disableSelection();
 	});
 	</script>
@@ -22,314 +59,128 @@
     <title>New Document</title>
 </head>
 <body>
-    <div class="container">
+  <div class="container">
     <section>
-        <form class="well">
-            <fieldset>
-                <legend>Listas Recentes</legend>
-
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th width="20">&nbsp;</th>
-                            <th>Data</th>
-                            <th>Qtd Produtos</th>
-                            <th>Sugest&atilde;o</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                            <td><label for="1">11/04/2012</label></td>
-                            <td>20</td>
-                            <td>Guanabara</td>
-                            
-                        </tr>
-                        <tr>
-                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                            <td><label for="2">02/04/2012</label></td>
-                            <td>27</td>
-                            <td>Extra</td>
-                            
-                        </tr>
-                        <tr>
-                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                            <td><label for="3">29/03/2012</label></td>
-                            <td>18</td>
-                            <td>Prezunic</td>
-                            
-                        </tr>
-                    </tbody>
-                </table>
-
-            </fieldset>
-        </form>
-        
-        <form class="well">
-            <fieldset>
-                <legend>Nova lista</legend>
-                
-                <div class="control-group" style="margin-top:0px">
-                    <label class="control-label" for="groups">Grupo</label>
-                    <div class="controls">
-                        <select id="groups">
-                            <option>Alimentos</option>
-                            <option>Bebidas</option>
-                            <option>Carnes</option>
-                            <option>Frutas e Verduras</option>
-                            <option>Padaria</option>
-                            <option>Higiene</option>
-                            <option>Laticinios</option>
-                            <option>Limpeza</option>
-                            <option>Outros</option>
-                        </select>
-                    </div>
-                </div>
-                
-                
-                <div class="row">
-                    
-                    <div class="span4">
-                        <div class="control-group">
-                            <label class="control-label" for="groups">Produtos</label>
-                            <div class="controls">
-
-                                <table id="produtos" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th width="20">&nbsp;</th>
-                                            <th>Produto</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="2">
-                                                <div class="pagination" style="margin:0">
-                                                    <ul>
-                                                        <li class="disabled"><a href="#">«</a></li>
-                                                        <li class="active"><a href="#">1</a></li>
-                                                        <li><a href="#">2</a></li>
-                                                        <li><a href="#">3</a></li>
-                                                        <li><a href="#">4</a></li>
-                                                        <li><a href="#">»</a></li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>P&atilde;o de Forma Plus Vita</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>Nescau</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>Nescau</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>Nescau</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>Nescau</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>Nescau</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>Nescau</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>Nescau</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-plus icon-white"></i></a></td>
-                                            <td>Nescau</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                 
-                    </div>
-                
-                    <div class="span6">
-                        <div class="control-group">
-                            <label class="control-label">Lista</label>
-                            <div class="controls">
-                                    
-                                <table id="lista" class="table table-bordered connectedSortable">
-                                    <thead>
-                                        <tr>
-                                            <th width="20">&nbsp;</th>
-                                            <th>Produto</th>
-                                            <th>Quantidade</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>P&atilde;o de Forma Plus Vita</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Nescau</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr><tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td><a class="btn btn-danger btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                                            <td>Arroz Tio Jo&atilde;o</td>
-                                            <td><input class="input-mini" style="margin:0;padding:0" type="text" name="quantity" min="0" max="50" /></td>
-                                            
-                                        </tr>
-                                    </tbody>
-                                </table>
+        <div class="well">
+            <h2>Listas Recentes</h2>
+            <form class="">
+                <fieldset>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="20">&nbsp;</th>
+                                <th>Data</th>
+                                <th>Qtd Produtos</th>
+                                <th>Sugest&atilde;o</th>
                                 
-                                <div class="row">
-                                    <div class="span" >
-                                        <a class="btn btn-primary btn-large" style="padding:7px 14px" href="#"><i class="icon-ok icon-white"></i> Salvar e Imprimir</a>                        
-                                    </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
+                                <td><label for="1">11/04/2012</label></td>
+                                <td>20</td>
+                                <td>Guanabara</td>
+                                
+                            </tr>
+                            <tr>
+                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
+                                <td><label for="2">02/04/2012</label></td>
+                                <td>27</td>
+                                <td>Extra</td>
+                                
+                            </tr>
+                            <tr>
+                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
+                                <td><label for="3">29/03/2012</label></td>
+                                <td>18</td>
+                                <td>Prezunic</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+        
+        <div class="well">
+            <h2>Nova Lista</h2>
+            
+            <form class="form-inline">
+                <select id="groups">
+                    <option>Alimentos</option>
+                    <option>Bebidas</option>
+                    <option>Carnes</option>
+                    <option>Frutas e Verduras</option>
+                    <option>Padaria</option>
+                    <option>Higiene</option>
+                    <option>Laticinios</option>
+                    <option>Limpeza</option>
+                    <option>Outros</option>
+                </select>
+                <select id="groups" class="input-mini">
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+                    <option>E</option>
+                    <option>F</option>
+                    <option>G</option>
+                    <option>H</option>
+                    <option>I</option>
+                </select>
+                
+                <button class="btn" type="submit">Filtrar</button>
+            </form>
+            
+            <form class="">
+                <fieldset>
+                    
+                    <div class="row">
+                        
+                        <div class="span5">
+                            <div class="control-group">
+                                
+                                <div class="controls">
+                                    <ul id="produtos" class="table table-bordered table-striped">
+                                        <li class="th">Produtos cadastrados</li>
+                                        <li>P&atilde;o de Forma Plus Vita</li>
+                                        <li>Nescau</li>
+                                        <li>Banana</li>
+                                        <li>Leite</li>
+                                        <li>Biscoito</li>
+                                        <li>Queijo</li>
+                                        <li>Presunto</li>
+                                        <li>Carne</li>
+                                        <li>Suco</li>
+                                    </ul>
                                 </div>
-                                    
                             </div>
+                     
                         </div>
                     
+                        <div class="span5">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <ul id="lista" class="table table-bordered table-striped connectedSortable">
+                                        <li class="th">Minha Lista</li>
+                                    </ul>
+                                        
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
                     </div>
-                </div>
-        
-            </fieldset>
-        </form>
-        
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-large" type="button">Salvar e Imprimir</button>
+                        <button class="btn btn-large">Cancelar</button>
+                    </div>
+            
+                </fieldset>
+            </form>
+        </div>
         
     </section>
     </div>
