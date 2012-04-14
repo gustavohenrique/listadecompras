@@ -37,21 +37,45 @@
         vertical-align: top;
         background: white;
     }
-    .ui-state-highlight { 
-        background: yellow;
-        height: 18px;
-        padding: 8px;
-    }
     </style>
     
     <script>
+     
     $(function() {
-		$( '#produtos, #lista' ).sortable({
+		$('#produtos, #lista').sortable({
 			connectWith: '.connectedSortable',
             cancel: '.th',
             cursor: 'move',
-            placeholder: 'ui-state-highlight',
             forcePlaceholderSize: true,
+            
+            sort: function(event, ui) {
+                var item = ui.item,
+                    nomeProduto = item.html(),
+                    itemNaLista = $('#lista').find('li:contains("' + nomeProduto.toString() + '")').length;
+
+                if (itemNaLista > 0) item.remove();
+                
+            },
+            
+            start: function(){
+                $('.th', this).each(function(){
+                    var $this = $(this);
+                    $this.data('pos', $this.index());
+                });
+            },
+            
+            change: function(){
+                $sortable = $(this);
+                $statics = $('.th', this).detach();
+                $helper = $('<li></li>').prependTo(this);
+                $statics.each(function(){
+                    var $this = $(this);
+                    var target = $this.data('pos');
+
+                    $this.insertAfter($('li', $sortable).eq(target));
+                });
+                $helper.remove();
+            }
 		}).disableSelection();
 	});
 	</script>
@@ -107,7 +131,7 @@
             <h2>Nova Lista</h2>
             
             <form class="form-inline">
-                <select id="groups">
+                <select id="grupos">
                     <option>Alimentos</option>
                     <option>Bebidas</option>
                     <option>Carnes</option>
@@ -118,7 +142,7 @@
                     <option>Limpeza</option>
                     <option>Outros</option>
                 </select>
-                <select id="groups" class="input-mini">
+                <select id="letraInicial" class="input-mini">
                     <option>A</option>
                     <option>B</option>
                     <option>C</option>
@@ -136,15 +160,16 @@
             <form class="">
                 <fieldset>
                     
-                    <div class="row">
+                    <div class="row-fluid">
                         
-                        <div class="span5">
+                        <div class="span6">
                             <div class="control-group">
                                 
                                 <div class="controls">
                                     <ul id="produtos" class="table table-bordered table-striped">
                                         <li class="th">Produtos cadastrados</li>
                                         <li>P&atilde;o de Forma Plus Vita</li>
+                                        <li>Nescau</li>
                                         <li>Nescau</li>
                                         <li>Banana</li>
                                         <li>Leite</li>
@@ -159,7 +184,7 @@
                      
                         </div>
                     
-                        <div class="span5">
+                        <div class="span6">
                             <div class="control-group">
                                 <div class="controls">
                                     <ul id="lista" class="table table-bordered table-striped connectedSortable">
