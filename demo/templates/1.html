@@ -5,40 +5,13 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.18.custom.css" />
-    <!--
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    -->
+    <link rel="stylesheet" href="bootstrap/css/docs.css" />
+    <link rel="stylesheet" href="bootstrap/css/style.css" />
+
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/jquery-ui-1.8.18.custom.min.js"></script>
     
-    <style type="text/css">
-    ul.table-bordered {
-        border-radius: 4px;
-        border-left: 1px solid #DDDDDD;
-        list-style-type: none;
-        margin: 0;
-    }
-    /* ul.table-bordered li:first-child { */
-    ul.table-bordered li:first-child {
-        border-top: 0 none;
-        vertical-align: bottom;
-    }
-    
-    ul.table-bordered li.th {
-        font-weight: bold;
-        background: #efefef;
-    }
-
-    ul.table li {
-        border-top: 1px solid #DDDDDD;
-        height: 18px;
-        padding: 8px;
-        text-align: left;
-        vertical-align: top;
-        background: white;
-    }
-    </style>
-    
+       
     <script>
      
     $(function() {
@@ -57,80 +30,58 @@
                 
             },
             
-            start: function(){
-                $('.th', this).each(function(){
-                    var $this = $(this);
-                    $this.data('pos', $this.index());
-                });
-            },
             
-            change: function(){
-                $sortable = $(this);
-                $statics = $('.th', this).detach();
-                $helper = $('<li></li>').prependTo(this);
-                $statics.each(function(){
-                    var $this = $(this);
-                    var target = $this.data('pos');
-
-                    $this.insertAfter($('li', $sortable).eq(target));
-                });
-                $helper.remove();
-            }
 		}).disableSelection();
 	});
 	</script>
     
-    <title>New Document</title>
+    <title>listadecompras.net - Nova lista</title>
 </head>
 <body>
-  <div class="container">
-    <section>
-        <div class="well">
-            <h2>Listas Recentes</h2>
-            <form class="">
-                <fieldset>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th width="20">&nbsp;</th>
-                                <th>Data</th>
-                                <th>Qtd Produtos</th>
-                                <th>Sugest&atilde;o</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                                <td><label for="1">11/04/2012</label></td>
-                                <td>20</td>
-                                <td>Guanabara</td>
-                                
-                            </tr>
-                            <tr>
-                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                                <td><label for="2">02/04/2012</label></td>
-                                <td>27</td>
-                                <td>Extra</td>
-                                
-                            </tr>
-                            <tr>
-                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                                <td><label for="3">29/03/2012</label></td>
-                                <td>18</td>
-                                <td>Prezunic</td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </fieldset>
-            </form>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">listadecompras.net</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Inicio</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                 </div>
+            </div>
         </div>
+    </div>
+
+  <div class="container">
+    <section id="ajuda">
+        <div class="row-fluid">
+            <div class="span3">
+              <h2>Selecione o grupo</h2>
+              <p>Os produtos est&atilde;o dividos em grupos como bebidas, carnes, frutas e legumes.</p>
+            </div>
+            <div class="span">
+                <img src="bootstrap/img/arrow.png">
+            </div>
+            <div class="span3">
+              <h2>Clique na letra</h2>
+              <p>Clique no bot&atilde;o que corresponde &agrave; letra inicial do nome do produto.</p>
+            </div>
+            <div class="span">
+                <img src="bootstrap/img/arrow.png">
+            </div>
+            <div class="span3">
+              <h2>Arraste para a lista</h2>
+              <p>Arraste o produto da esquerda para direita ou para fora da lista para remover.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <section>
         
-        <div class="well">
-            <h2>Nova Lista</h2>
-            
-            <form class="form-inline">
+        <div class="">
+            <form class="well form-inline">
                 <select id="grupos">
                     <option>Alimentos</option>
                     <option>Bebidas</option>
@@ -142,19 +93,32 @@
                     <option>Limpeza</option>
                     <option>Outros</option>
                 </select>
-                <select id="letraInicial" class="input-mini">
-                    <option>A</option>
-                    <option>B</option>
-                    <option>C</option>
-                    <option>D</option>
-                    <option>E</option>
-                    <option>F</option>
-                    <option>G</option>
-                    <option>H</option>
-                    <option>I</option>
-                </select>
-                
-                <button class="btn" type="submit">Filtrar</button>
+                <button class="btn" type="button">A</button>
+                <button class="btn" type="button">B</button>
+                <button class="btn" type="button">C</button>
+                <button class="btn" type="button">D</button>
+                <button class="btn" type="button">E</button>
+                <button class="btn" type="button">F</button>
+                <button class="btn" type="button">G</button>
+                <button class="btn" type="button">H</button>
+                <button class="btn" type="button">I</button>
+                <button class="btn" type="button">J</button>
+                <button class="btn" type="button">K</button>
+                <button class="btn" type="button">L</button>
+                <button class="btn" type="button">M</button>
+                <button class="btn" type="button">N</button>
+                <button class="btn" type="button">O</button>
+                <button class="btn" type="button">P</button>
+                <button class="btn" type="button">Q</button>
+                <button class="btn" type="button">R</button>
+                <button class="btn" type="button">S</button>
+                <button class="btn" type="button">T</button>
+                <button class="btn" type="button">U</button>
+                <button class="btn" type="button">V</button>
+                <button class="btn" type="button">W</button>
+                <button class="btn" type="button">X</button>
+                <button class="btn" type="button">Y</button>
+                <button class="btn" type="button">Z</button>
             </form>
             
             <form class="">
@@ -208,6 +172,51 @@
         </div>
         
     </section>
+    
+    <section>
+        <div class="">
+            <h2>Listas Recentes</h2>
+            <form class="">
+                <fieldset>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="20">&nbsp;</th>
+                                <th>Data</th>
+                                <th>Qtd Produtos</th>
+                                <th>Sugest&atilde;o</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
+                                <td><label for="1">11/04/2012</label></td>
+                                <td>20</td>
+                                <td>Guanabara</td>
+                                
+                            </tr>
+                            <tr>
+                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
+                                <td><label for="2">02/04/2012</label></td>
+                                <td>27</td>
+                                <td>Extra</td>
+                                
+                            </tr>
+                            <tr>
+                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
+                                <td><label for="3">29/03/2012</label></td>
+                                <td>18</td>
+                                <td>Prezunic</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+    
     </div>
 </body>
 </html>

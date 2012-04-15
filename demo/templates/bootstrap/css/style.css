@@ -1,0 +1,43 @@
+section {
+    padding-top: 0;
+}
+#ajuda {
+    padding: 0px 0px 50px 0px;
+}
+.table thead th {
+    vertical-align: middle;
+    text-align: center;
+    background: white;
+}
+.table td { background: white; }
+td.price { text-align: right; }
+.table tbody td { vertical-align: middle; }
+.table tfoot tr td {
+    text-align: right;
+    font-weight: bold;
+}
+ul.table-bordered {
+    border-radius: 4px;
+    border-left: 1px solid #DDDDDD;
+    list-style-type: none;
+    margin: 0;
+}
+/* ul.table-bordered li:first-child { */
+ul.table-bordered li:first-child {
+    border-top: 0 none;
+    vertical-align: bottom;
+}
+
+ul.table-bordered li.th {
+    font-weight: bold;
+    background: #efefef;
+}
+
+ul.table li {
+    border-top: 1px solid #DDDDDD;
+    height: 18px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+    background: white;
+}
