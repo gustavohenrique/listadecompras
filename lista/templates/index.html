@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+    
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/smoothness/jquery-ui-1.8.18.custom.css" />
+    <script type="text/javascript">
+     
+    $(function() {
+		$('#produtos, #lista').sortable({
+			connectWith: '.connectedSortable',
+            cancel: '.th',
+            cursor: 'move',
+            forcePlaceholderSize: true,
+            
+            sort: function(event, ui) {
+                var item = ui.item,
+                    nomeProduto = item.html(),
+                    itemNaLista = $('#lista').find('li:contains("' + nomeProduto.toString() + '")').length;
+
+                if (itemNaLista > 0) item.remove();
+                
+            },
+            
+            
+		}).disableSelection();
+	});
+	</script>
+{% endblock %}
+
+{% block content %}
+
+    <section id="ajuda">
+        <div class="row-fluid">
+            <div class="span3">
+              <h2>Selecione o grupo</h2>
+              <p>Os produtos est&atilde;o dividos em grupos como bebidas, carnes, frutas e legumes.</p>
+            </div>
+            <div class="span">
+                <img src="{{ STATIC_URL }}bootstrap/img/arrow.png">
+            </div>
+            <div class="span3">
+              <h2>Clique na letra</h2>
+              <p>Clique no bot&atilde;o que corresponde &agrave; letra inicial do nome do produto.</p>
+            </div>
+            <div class="span">
+                <img src="{{ STATIC_URL }}bootstrap/img/arrow.png">
+            </div>
+            <div class="span3">
+              <h2>Arraste para a lista</h2>
+              <p>Arraste o produto da esquerda para direita ou para fora da lista para remover.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <section>
+        
+        <div class="">
+            <form class="well form-inline">
+                <select id="grupos">
+                    <option>Alimentos</option>
+                    <option>Bebidas</option>
+                    <option>Carnes</option>
+                    <option>Frutas e Verduras</option>
+                    <option>Padaria</option>
+                    <option>Higiene</option>
+                    <option>Laticinios</option>
+                    <option>Limpeza</option>
+                    <option>Outros</option>
+                </select>
+                <button class="btn" type="button">A</button>
+                <button class="btn" type="button">B</button>
+                <button class="btn" type="button">C</button>
+                <button class="btn" type="button">D</button>
+                <button class="btn" type="button">E</button>
+                <button class="btn" type="button">F</button>
+                <button class="btn" type="button">G</button>
+                <button class="btn" type="button">H</button>
+                <button class="btn" type="button">I</button>
+                <button class="btn" type="button">J</button>
+                <button class="btn" type="button">K</button>
+                <button class="btn" type="button">L</button>
+                <button class="btn" type="button">M</button>
+                <button class="btn" type="button">N</button>
+                <button class="btn" type="button">O</button>
+                <button class="btn" type="button">P</button>
+                <button class="btn" type="button">Q</button>
+                <button class="btn" type="button">R</button>
+                <button class="btn" type="button">S</button>
+                <button class="btn" type="button">T</button>
+                <button class="btn" type="button">U</button>
+                <button class="btn" type="button">V</button>
+                <button class="btn" type="button">W</button>
+                <button class="btn" type="button">X</button>
+                <button class="btn" type="button">Y</button>
+                <button class="btn" type="button">Z</button>
+            </form>
+            
+            <form class="">
+                <fieldset>
+                    
+                    <div class="row-fluid">
+                        
+                        <div class="span6">
+                            <div class="control-group">
+                                
+                                <div class="controls">
+                                    <ul id="produtos" class="table table-bordered table-striped">
+                                        <li class="th">Produtos cadastrados</li>
+                                        <li>P&atilde;o de Forma Plus Vita</li>
+                                        <li>Nescau</li>
+                                        <li>Nescau</li>
+                                        <li>Banana</li>
+                                        <li>Leite</li>
+                                        <li>Biscoito</li>
+                                        <li>Queijo</li>
+                                        <li>Presunto</li>
+                                        <li>Carne</li>
+                                        <li>Suco</li>
+                                    </ul>
+                                </div>
+                            </div>
+                     
+                        </div>
+                    
+                        <div class="span6">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <ul id="lista" class="table table-bordered table-striped connectedSortable">
+                                        <li class="th">Minha Lista</li>
+                                    </ul>
+                                        
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-primary btn-large" type="button">Salvar e Imprimir</button>
+                        <button class="btn btn-large">Cancelar</button>
+                    </div>
+            
+                </fieldset>
+            </form>
+        </div>
+        
+    </section>
+    
+    <section>
+        <div class="">
+            <h2>Listas Recentes</h2>
+            <form class="">
+                <fieldset>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="20">&nbsp;</th>
+                                <th>Data</th>
+                                <th>Qtd Produtos</th>
+                                <th>Sugest&atilde;o</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
+                                <td><label for="1">11/04/2012</label></td>
+                                <td>20</td>
+                                <td>Guanabara</td>
+                                
+                            </tr>
+                            <tr>
+                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
+                                <td><label for="2">02/04/2012</label></td>
+                                <td>27</td>
+                                <td>Extra</td>
+                                
+                            </tr>
+                            <tr>
+                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
+                                <td><label for="3">29/03/2012</label></td>
+                                <td>18</td>
+                                <td>Prezunic</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+    
+{% endblock %}
