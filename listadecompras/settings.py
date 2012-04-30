@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 PROJECT_DIR = os.path.dirname(__file__)
 
@@ -89,7 +90,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'lista',

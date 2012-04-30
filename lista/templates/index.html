@@ -58,15 +58,11 @@
         <div class="">
             <form class="well form-inline">
                 <select id="grupos">
-                    <option>Alimentos</option>
-                    <option>Bebidas</option>
-                    <option>Carnes</option>
-                    <option>Frutas e Verduras</option>
-                    <option>Padaria</option>
-                    <option>Higiene</option>
-                    <option>Laticinios</option>
-                    <option>Limpeza</option>
-                    <option>Outros</option>
+                    {% for secao in secoes %}
+                        <option value="{{ secao.id }}">{{ secao.nome }}</option>
+                    {% empty %}
+                        <option value="0">Nenhuma se&ccedil;&atilde;o cadastrada</option>
+                    {% endfor %}
                 </select>
                 <button class="btn" type="button">A</button>
                 <button class="btn" type="button">B</button>
