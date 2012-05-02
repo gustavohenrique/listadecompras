@@ -31,7 +31,19 @@
                 elemento.childNodes[0].setAttribute("class", "icon-ok");
             }
         }
-    
+   
+        function exibirProdutos(secao) { console.log(secao);
+            $.ajax({
+                url: '/lista/produtos/',
+                data: $('#' + secao.id + ' option:selected').val(),
+                success: function(data) {
+                   console.log('ok ' + data);
+                },
+                error: function(data) {
+                   console.log('fuuu ' + data)
+                }
+            })
+        } 
 	</script>
 {% endblock %}
 
@@ -43,7 +55,7 @@
             
             <form class="well">
                 <fieldset>
-                    <select id="grupos">
+                    <select id="grupos" onchange="exibirProdutos(this)">
                         <option value="0">Se&ccedil;&atilde;o</option>
                         {% for secao in secoes %}
                             <option value="{{ secao.id }}">{{ secao.nome }}</option>
