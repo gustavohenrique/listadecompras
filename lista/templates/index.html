@@ -3,98 +3,41 @@
 {% block extra_head %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/smoothness/jquery-ui-1.8.18.custom.css" />
     <script type="text/javascript">
-     
-    $(function() {
-		$('#produtos, #lista').sortable({
-			connectWith: '.connectedSortable',
-            cancel: '.th',
-            cursor: 'move',
-            forcePlaceholderSize: true,
+        function adicionar(elemento) {
+            var storage = sessionStorage,
+                produto = elemento.parentNode.textContent,
+                value = storage.getItem(elemento.id);
+                //elemento.parent().text()
             
-            sort: function(event, ui) {
-                var item = ui.item,
-                    nomeProduto = item.html(),
-                    itemNaLista = $('#lista').find('li:contains("' + nomeProduto.toString() + '")').length;
-
-                if (itemNaLista > 0) item.remove();
-                
-            },
-            
-            
-		}).disableSelection();
-	});
+            if (value != null) {
+                storage.removeItem(elemento.id);
+                elemento.childNodes[0].setAttribute("class", "icon-plus");
+            }
+            else {
+                storage.setItem(elemento.id, produto);
+                elemento.childNodes[0].setAttribute("class", "icon-ok");
+            }
+        }
+    
 	</script>
 {% endblock %}
 
 {% block content %}
-
-    <section id="ajuda">
-        <div class="row-fluid">
-            <div class="span3">
-              <h2>Selecione o grupo</h2>
-              <p>Os produtos est&atilde;o dividos em grupos como bebidas, carnes, frutas e legumes.</p>
-            </div>
-            <div class="span">
-                <img src="{{ STATIC_URL }}bootstrap/img/arrow.png">
-            </div>
-            <div class="span3">
-              <h2>Clique na letra</h2>
-              <p>Clique no bot&atilde;o que corresponde &agrave; letra inicial do nome do produto.</p>
-            </div>
-            <div class="span">
-                <img src="{{ STATIC_URL }}bootstrap/img/arrow.png">
-            </div>
-            <div class="span3">
-              <h2>Arraste para a lista</h2>
-              <p>Arraste o produto da esquerda para direita ou para fora da lista para remover.</p>
-            </div>
-        </div>
-    </section>
-    
-    
     
     <section>
         
         <div class="">
-            <form class="well form-inline">
-                <select id="grupos">
-                    {% for secao in secoes %}
-                        <option value="{{ secao.id }}">{{ secao.nome }}</option>
-                    {% empty %}
-                        <option value="0">Nenhuma se&ccedil;&atilde;o cadastrada</option>
-                    {% endfor %}
-                </select>
-                <button class="btn" type="button">A</button>
-                <button class="btn" type="button">B</button>
-                <button class="btn" type="button">C</button>
-                <button class="btn" type="button">D</button>
-                <button class="btn" type="button">E</button>
-                <button class="btn" type="button">F</button>
-                <button class="btn" type="button">G</button>
-                <button class="btn" type="button">H</button>
-                <button class="btn" type="button">I</button>
-                <button class="btn" type="button">J</button>
-                <button class="btn" type="button">K</button>
-                <button class="btn" type="button">L</button>
-                <button class="btn" type="button">M</button>
-                <button class="btn" type="button">N</button>
-                <button class="btn" type="button">O</button>
-                <button class="btn" type="button">P</button>
-                <button class="btn" type="button">Q</button>
-                <button class="btn" type="button">R</button>
-                <button class="btn" type="button">S</button>
-                <button class="btn" type="button">T</button>
-                <button class="btn" type="button">U</button>
-                <button class="btn" type="button">V</button>
-                <button class="btn" type="button">W</button>
-                <button class="btn" type="button">X</button>
-                <button class="btn" type="button">Y</button>
-                <button class="btn" type="button">Z</button>
-            </form>
             
-            <form class="">
+            <form class="well">
                 <fieldset>
-                    
+                    <select id="grupos">
+                        <option value="0">Se&ccedil;&atilde;o</option>
+                        {% for secao in secoes %}
+                            <option value="{{ secao.id }}">{{ secao.nome }}</option>
+                        {% empty %}
+                            <option value="0">Nenhuma se&ccedil;&atilde;o cadastrada</option>
+                        {% endfor %}
+                    </select>    
                     <div class="row-fluid">
                         
                         <div class="span6">
@@ -102,9 +45,15 @@
                                 
                                 <div class="controls">
                                     <ul id="produtos" class="table table-bordered table-striped">
-                                        <li class="th">Produtos cadastrados</li>
-                                        <li>P&atilde;o de Forma Plus Vita</li>
-                                        <li>Nescau</li>
+                                        
+                                        <li>
+                                            <a href="#" id="2" onclick="adicionar(this)"><i class="icon-plus"></i>&nbsp;</a>
+                                            P&atilde;o de Forma Plus Vita
+                                        </li>
+                                        <li>
+                                            <a href="#" id="3" onclick="remover(this)"><i class="icon-ok"></i>&nbsp;</a>
+                                            Nescau
+                                        </li>
                                         <li>Nescau</li>
                                         <li>Banana</li>
                                         <li>Leite</li>
@@ -119,21 +68,11 @@
                      
                         </div>
                     
-                        <div class="span6">
-                            <div class="control-group">
-                                <div class="controls">
-                                    <ul id="lista" class="table table-bordered table-striped connectedSortable">
-                                        <li class="th">Minha Lista</li>
-                                    </ul>
-                                        
-                                </div>
-                            </div>
-                        
-                        </div>
+                       
                         
                     </div>
                     
-                    <div class="form-actions">
+                    <div class="form-actions2">
                         <button class="btn btn-primary btn-large" type="button">Salvar e Imprimir</button>
                         <button class="btn btn-large">Cancelar</button>
                     </div>
