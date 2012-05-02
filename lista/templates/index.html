@@ -3,6 +3,19 @@
 {% block extra_head %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/smoothness/jquery-ui-1.8.18.custom.css" />
     <script type="text/javascript">
+        function atualizar() {
+            var storage = sessionStorage;
+
+            $('a.item').each(function(index) { 
+                if (storage.getItem(this.id) != null) {
+                    this.childNodes[0].setAttribute("class", "icon-ok"); console.log('ja existe');
+                } else {
+                    this.childNodes[0].setAttribute("class", "icon-plus"); console.log('nao existe');
+                }
+
+            });
+        }
+
         function adicionar(elemento) {
             var storage = sessionStorage,
                 produto = elemento.parentNode.textContent,
@@ -47,11 +60,11 @@
                                     <ul id="produtos" class="table table-bordered table-striped">
                                         
                                         <li>
-                                            <a href="#" id="2" onclick="adicionar(this)"><i class="icon-plus"></i>&nbsp;</a>
+                                            <a href="#" id="2" class="item" onclick="adicionar(this)"><i class="icon-plus"></i>&nbsp;</a>
                                             P&atilde;o de Forma Plus Vita
                                         </li>
                                         <li>
-                                            <a href="#" id="3" onclick="remover(this)"><i class="icon-ok"></i>&nbsp;</a>
+                                            <a href="#" id="3" class="item" onclick="adicionar(this)"><i class="icon-ok"></i>&nbsp;</a>
                                             Nescau
                                         </li>
                                         <li>Nescau</li>
@@ -126,5 +139,9 @@
             </form>
         </div>
     </section>
-    
+<script>
+//$(document).ready(function(){
+atualizar();
+//})
+</script>
 {% endblock %}
