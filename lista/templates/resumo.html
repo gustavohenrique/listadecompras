@@ -137,3 +137,12 @@
     </section>
 
 {% endblock %}
+
+{% block footer %}
+    <footer class="container-fluid">
+        <p>
+            <button id="salvar" onclick="window.location.href='{% url lista-resumo %}'" class="btn btn-primary btn-large" type="button">Salvar</button>
+            <button id="limpar" onclick="limparStorage()" class="btn btn-large" type="button">Limpar</button>
+        </p>
+    </footer>
+{% endblock %}

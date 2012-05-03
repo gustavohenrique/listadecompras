@@ -8,7 +8,7 @@
             border-top: 1px solid #eee;
             color: white;
             background-color: #f5f5f5;
-            position: relative;       
+            position: relative;
         }
 
         footer > p {
@@ -27,7 +27,7 @@
         .wrapper > .container-fluid, .wrapper > .container {
             padding-top: 60px;
         }
-        
+
     </style>
     <script type="text/javascript">
         function atualizar() {
@@ -77,14 +77,29 @@
                 }
             });
         }
+
+        function salvarLista() {
+            var form = $('#listaDeProdutos'),
+                storage = sessionStorage,
+                listaDeIds = new Array();
+
+            for (i = 0; i < storage.total; i++) {
+                listaDeIds.push(storage.key(i));
+            }
+        }
+
+        function limparStorage() {
+            sessionStorage.clear();
+            history.go(0);
+        }
 	</script>
 {% endblock %}
 
 {% block content %}
 
     <section>
-          
-        <form class="">
+
+        <form id="listaDeProdutos" class="">
             <fieldset>
                 <div class="well">
                     <select id="grupos" onchange="exibirProdutos(this)">
@@ -94,33 +109,24 @@
                         {% empty %}
                             <option value="0">Nenhuma se&ccedil;&atilde;o cadastrada</option>
                         {% endfor %}
-                    </select>    
+                    </select>
                     <div class="row-fluid">
-                        
+
                         <div class="span6">
                             <div class="control-group">
-                                
                                 <div class="controls">
                                     <ul id="produtos" class="table table-bordered table-striped">
                                         <li>Selecione uma se&ccedil;&atilde;o acima.</li>
                                     </ul>
                                 </div>
                             </div>
-                     
                         </div>
-                    
-                       
-                        
-                    </div>
-                </div>    
 
-                <div class="form-actions2">
-                    
+                    </div>
                 </div>
-                
+
             </fieldset>
         </form>
-        
     </section>
     <!--
     <section>
@@ -135,7 +141,6 @@
                                 <th>Data</th>
                                 <th>Qtd Produtos</th>
                                 <th>Sugest&atilde;o</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -144,21 +149,18 @@
                                 <td><label for="1">11/04/2012</label></td>
                                 <td>20</td>
                                 <td>Guanabara</td>
-                                
                             </tr>
                             <tr>
                                 <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
                                 <td><label for="2">02/04/2012</label></td>
                                 <td>27</td>
                                 <td>Extra</td>
-                                
                             </tr>
                             <tr>
                                 <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
                                 <td><label for="3">29/03/2012</label></td>
                                 <td>18</td>
                                 <td>Prezunic</td>
-                                
                             </tr>
                         </tbody>
                     </table>
@@ -173,8 +175,8 @@
 {% block footer %}
     <footer class="container-fluid">
         <p>
-            <button class="btn btn-primary btn-large" type="button">Salvar e Imprimir</button>
-            <button class="btn btn-large">Cancelar</button>
+            <button id="salvar" onclick="window.location.href='{% url lista-resumo %}'" class="btn btn-primary btn-large" type="button">Salvar</button>
+            <button id="limpar" onclick="limparStorage()" class="btn btn-large" type="button">Limpar</button>
         </p>
     </footer>
 
