@@ -16,22 +16,27 @@
     <title>listadecompras.net - Nova lista</title>
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand" href="#">listadecompras.net</a>
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li class="active"><a href="#">Inicio</a></li>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
-                 </div>
+    <div class="wrapper">
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="#">listadecompras.net</a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Inicio</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                     </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        {% block content %} {% endblock %}
+        <div class="container">
+            {% block content %} {% endblock %}
+        </div>
     </div>
+    
+    {% block footer %} {% endblock %}
+    
 </body>
 </html>
