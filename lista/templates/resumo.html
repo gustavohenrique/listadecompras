@@ -2,7 +2,9 @@
 
 {% block content %}
     <section>
-        
+        {% for item in lista %}
+            <p>{{ item }}</p>
+        {% endfor %}
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>

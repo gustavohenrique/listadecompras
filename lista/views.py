@@ -13,7 +13,15 @@ def index(request):
     return direct_to_template(request, 'index.html', context)
 
 def resumo(request):
-    return direct_to_template(request, 'resumo.html')
+    if request.POST:
+        lista_ids = request.POST.get('ids').split(',')
+        produtos = []
+        for id in lista_ids:
+            pk = int(id)
+            produtos.append(Produto.objects.get(pk=pk))
+
+        context = {'lista': produtos}
+        return direct_to_template(request, 'resumo.html', context)
 
 def produtos(request, secao_id):
     secao = get_object_or_404(Secao, pk=secao_id)

@@ -1,34 +1,7 @@
 {% extends 'base.html' %}
 
 {% block extra_head %}
-    <style type="text/css">
-        html, body { height: 100%; }
-        footer {
-            padding: 0 10px 0 10px;
-            border-top: 1px solid #eee;
-            color: white;
-            background-color: #f5f5f5;
-            position: relative;
-        }
 
-        footer > p {
-            margin-bottom: 11px;
-            margin-top: 13px;
-            text-align: center;
-        }
-
-        .wrapper {
-            min-height: 100%;
-            height: auto !important;
-            height: 100%;
-            margin: 0 auto -65px;
-        }
-
-        .wrapper > .container-fluid, .wrapper > .container {
-            padding-top: 60px;
-        }
-
-    </style>
     <script type="text/javascript">
         function atualizar() {
             var storage = sessionStorage;
@@ -83,9 +56,11 @@
                 storage = sessionStorage,
                 listaDeIds = new Array();
 
-            for (i = 0; i < storage.total; i++) {
+            for (i = 0; i < storage.length; i++) {
                 listaDeIds.push(storage.key(i));
             }
+            form.append('<input type="hidden" name="ids" value="' + listaDeIds.toString() + '">');
+            form.submit();
         }
 
         function limparStorage() {
@@ -99,8 +74,11 @@
 
     <section>
 
-        <form id="listaDeProdutos" class="">
+        <form id="listaDeProdutos" method="POST" action="{% url lista-resumo %}" class="">
             <fieldset>
+
+                {% csrf_token %}
+
                 <div class="well">
                     <select id="grupos" onchange="exibirProdutos(this)">
                         <option value="0">Se&ccedil;&atilde;o</option>
@@ -175,8 +153,8 @@
 {% block footer %}
     <footer class="container-fluid">
         <p>
-            <button id="salvar" onclick="window.location.href='{% url lista-resumo %}'" class="btn btn-primary btn-large" type="button">Salvar</button>
-            <button id="limpar" onclick="limparStorage()" class="btn btn-large" type="button">Limpar</button>
+            <button id="salvar" onclick="salvarLista()" class="btn btn-primary btn-large" type="button">Ok</button>
+            <button id="limpar" onclick="limparStorage()" class="btn btn-large" type="button">Cancelar</button>
         </p>
     </footer>
 
