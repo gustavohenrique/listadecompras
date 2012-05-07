@@ -2,8 +2,11 @@
 from django.contrib import admin
 from lista.models import *
 
-admin.site.register(Fabricante)
 admin.site.register(Secao)
 admin.site.register(Produto)
 admin.site.register(Supermercado)
-admin.site.register(Preco)
+
+class PrecoAdmin(admin.ModelAdmin):
+    list_display = ('produto', 'supermercado', 'preco', 'atualizacao')
+    list_filter = ('supermercado', 'atualizacao')
+admin.site.register(Preco, PrecoAdmin)

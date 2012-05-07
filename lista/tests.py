@@ -1,16 +1,14 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
+# coding: utf-8
 from django.test import TestCase
+
+from model_mommy import mommy
+from lista.models import *
 
 
 class SimpleTest(TestCase):
     def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+        pepsi = Produto, nome='Pepsi')
+        guanabara = mommy.make_one(Supermercado, nome='guanabara')
+        precos_pepsi = mommy.make_one(Preco, produto=pepsi, supermercado=guanabara, preco=4.5)
+        #import ipdb; ipdb.set_trace()
+        

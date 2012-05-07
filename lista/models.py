@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
-class Fabricante(models.Model):
-    nome = models.CharField(unique=True, max_length=50)
-
-    def __unicode__(self):
-        return self.nome
-
 class Secao(models.Model):
     nome = models.CharField(unique=True, max_length=50)
 
@@ -17,8 +11,7 @@ class Secao(models.Model):
         return self.nome
 
 class Produto(models.Model):
-    fabricante = models.ForeignKey(Fabricante, null=True, blank=True)
-    secao = models.ManyToManyField(Secao)
+    secoes = models.ManyToManyField(Secao)
     nome = models.CharField(unique=True, max_length=200)
 
     def __unicode__(self):
@@ -38,4 +31,7 @@ class Preco(models.Model):
     atualizacao = models.DateField(auto_now=True, auto_now_add=True)
 
     def __unicode__(self):
-        return self.preco
+        return '%s' % self.preco
+
+    class Meta:
+        unique_together = ('supermercado', 'produto', 'preco', 'atualizacao')
