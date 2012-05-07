@@ -23,6 +23,9 @@ class Supermercado(models.Model):
     def __unicode__(self):
         return self.nome
 
+    class Meta:
+        ordering = ['nome']
+
 
 class Preco(models.Model):
     supermercado = models.ForeignKey(Supermercado)
@@ -35,3 +38,4 @@ class Preco(models.Model):
 
     class Meta:
         unique_together = ('supermercado', 'produto', 'preco', 'atualizacao')
+        ordering = ['supermercado', '-atualizacao']

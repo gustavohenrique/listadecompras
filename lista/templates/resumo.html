@@ -2,140 +2,51 @@
 
 {% block content %}
     <section>
-        {% for item in lista %}
-            <p>{{ item }}</p>
-        {% endfor %}
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th rowspan="2" width="20">&nbsp;</th>
-                    <th rowspan="2">Descri&ccedil;&atilde;o</th>
-                    <th rowspan="2" width="60">Quantidade</th>
+                    <th rowspan="2">Produto</th>
                     <th rowspan="1" colspan="3">Pre&ccedil;os em R$</th>
                 </tr>
                 <tr>
-                    <th width="60">Guanabara</th>
-                    <th width="60">Extra</th>
-                    <th width="60">Prezunic</th>
+				    {% for supermercado in supermercados %}
+                        <th width="60">{{ supermercado }}</th>
+					{% endfor %}
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <td colspan="2">TOTAL</td>
-                    <td>40</td>
-                    <td>30</td>
-                    <td>30</td>
-                    <td>30</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tfoot>
             <tbody>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-minus icon-white"></i></a></td>
-                    <td>P&atilde;o de Forma Plus Vita</td>
-                    <td><input type="text" placeholder="" class="input-mini"></td>
-                    <td class="price">10</td>
-                    <td class="price">20</td>
-                    <td class="price">30</td>
-                </tr>
+				{% for item in lista %}
+					{% if item|length > 0 %}
+						<tr>
+							<td><a href="#" onclick="remover(this)"><i class="icon-remove"></i></a></td>
+							{% for preco in item %}
+								{% if forloop.first %}
+									<td>{{ preco.produto }}</td>
+								{% endif %}
+								<td class="price">
+  								    {% if preco.preco > 0 %}
+									    {{ preco.preco }}
+									{% else %}
+									    -
+								    {% endif %}
+								</td>
+							{% endfor %}
+						</tr>
+					{% endif %}
+				{% endfor %}
             </tbody>
         </table>
-        
+
     </section>
 
 {% endblock %}
