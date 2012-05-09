@@ -37,15 +37,17 @@ def salvar(request):
         for preco_id in precos:
             try:
                 quantidade = request.POST.get(preco_id)
-                preco = Preco.objects.get(pk=preco_id)
 
-                lista = Lista()
-                lista.supermercado = preco.supermercado
-                lista.produto = preco.produto
-                lista.preco_unitario = preco.valor
-                lista.quantidade = quantidade
-                lista.nome = lista_nome
-                lista.save()
+                if int(quantidade) > 0:
+                    preco = Preco.objects.get(pk=preco_id)
+
+                    lista = Lista()
+                    lista.supermercado = preco.supermercado
+                    lista.produto = preco.produto
+                    lista.preco_unitario = preco.valor
+                    lista.quantidade = quantidade
+                    lista.nome = lista_nome
+                    lista.save()
             except:
                 pass
 
@@ -61,6 +63,9 @@ def salvar(request):
 
 def exibir(request, lista_nome):
     listas = Lista.objects.filter(nome=lista_nome)
+    for lista in listas:
+        supermercado = lista.supermercado
+
     return HttpResponse(listas)
 
 
