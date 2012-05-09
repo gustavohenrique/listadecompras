@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
+
 class Secao(models.Model):
     nome = models.CharField(unique=True, max_length=50)
 
@@ -10,6 +11,7 @@ class Secao(models.Model):
     def __unicode__(self):
         return self.nome
 
+
 class Produto(models.Model):
     secoes = models.ManyToManyField(Secao)
     nome = models.CharField(unique=True, max_length=200)
@@ -17,8 +19,10 @@ class Produto(models.Model):
     def __unicode__(self):
         return self.nome
 
+
 class Supermercado(models.Model):
     nome = models.CharField(unique=True, max_length=50)
+    ativo = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.nome
@@ -30,12 +34,12 @@ class Supermercado(models.Model):
 class Preco(models.Model):
     supermercado = models.ForeignKey(Supermercado)
     produto = models.ForeignKey(Produto)
-    preco = models.DecimalField(max_digits=12, decimal_places=2)
+    valor = models.DecimalField(max_digits=12, decimal_places=2)
     atualizacao = models.DateField(auto_now=True, auto_now_add=True)
 
     def __unicode__(self):
-        return '%s' % self.preco
+        return '%s' % self.valor
 
     class Meta:
-        unique_together = ('supermercado', 'produto', 'preco', 'atualizacao')
+        unique_together = ('supermercado', 'produto', 'valor')
         ordering = ['supermercado', '-atualizacao']

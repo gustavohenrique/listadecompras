@@ -1,80 +1,16 @@
 {% extends 'base.html' %}
 
 {% block extra_head %}
-
-    <script type="text/javascript">
-        function atualizar() {
-            var storage = sessionStorage;
-
-            $('a.item').each(function(index) {
-                if (storage.getItem(this.id) != null) {
-                    this.childNodes[0].setAttribute("class", "icon-ok");
-                } else {
-                    this.childNodes[0].setAttribute("class", "icon-plus");
-                }
-
-            });
-        }
-
-        function adicionar(elemento) {
-            var storage = sessionStorage,
-                produto = elemento.parentNode.textContent,
-                value = storage.getItem(elemento.id);
-                //elemento.parent().text()
-
-            if (value != null) {
-                storage.removeItem(elemento.id);
-                elemento.childNodes[0].setAttribute("class", "icon-plus");
-            }
-            else {
-                storage.setItem(elemento.id, produto);
-                elemento.childNodes[0].setAttribute("class", "icon-ok");
-            }
-        }
-
-        function exibirProdutos(elemento) {
-            var secao_id = $('#' + elemento.id + ' option:selected').val(),
-                lista = $('#produtos');
-
-            lista.empty();
-            $.ajax({
-                url: '/lista/produtos/' + secao_id + '/',
-                success: function(retorno) {
-                    $.each(retorno, function(i, item) {
-                        lista.append('<li><a href="#" id="' + item.pk + '" class="item" onclick="adicionar(this)"><i class="icon-plus"></i>&nbsp;</a>' + item.fields['nome'] + '</li>');
-                    });
-                    atualizar();
-                },
-                error: function(data) {
-                   lista.append('<li>Nenhum produto na se&ccedil;&atilde;o</li>');
-                }
-            });
-        }
-
-        function salvarLista() {
-            var form = $('#listaDeProdutos'),
-                storage = sessionStorage,
-                listaDeIds = new Array();
-
-            for (i = 0; i < storage.length; i++) {
-                listaDeIds.push(storage.key(i));
-            }
-            form.append('<input type="hidden" name="ids" value="' + listaDeIds.toString() + '">');
-            form.submit();
-        }
-
-        function limparStorage() {
-            sessionStorage.clear();
-            history.go(0);
-        }
-	</script>
+    <script src="{{ STATIC_URL }}js/main.js"></script>
 {% endblock %}
 
 {% block content %}
 
     <section>
 
-        <form id="listaDeProdutos" method="POST" action="{% url lista-resumo %}" class="">
+        <h2>itens na lista: <span id="totalItensNaLista">0</span></h2>
+
+        <form id="listaDeProdutos" method="POST" action="{% url lista-resumo %}">
             <fieldset>
 
                 {% csrf_token %}
@@ -106,59 +42,21 @@
             </fieldset>
         </form>
     </section>
-    <!--
-    <section>
-        <div class="">
-            <h2>Listas Recentes</h2>
-            <form class="">
-                <fieldset>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th width="20">&nbsp;</th>
-                                <th>Data</th>
-                                <th>Qtd Produtos</th>
-                                <th>Sugest&atilde;o</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                                <td><label for="1">11/04/2012</label></td>
-                                <td>20</td>
-                                <td>Guanabara</td>
-                            </tr>
-                            <tr>
-                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                                <td><label for="2">02/04/2012</label></td>
-                                <td>27</td>
-                                <td>Extra</td>
-                            </tr>
-                            <tr>
-                                <td><a class="btn btn-primary btn-mini" href="#"><i class="icon-print icon-white"></i></a></td>
-                                <td><label for="3">29/03/2012</label></td>
-                                <td>18</td>
-                                <td>Prezunic</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </fieldset>
-            </form>
-        </div>
-    </section>
-    -->
 
 {% endblock %}
 
 {% block footer %}
     <footer class="container-fluid">
-        <p>
-            <button id="salvar" onclick="salvarLista()" class="btn btn-primary btn-large" type="button">Ok</button>
+        <a href="{% url lista-index %}" id="logo">&nbsp;listadecompras.net</a>
+        <p style="float:right">
+            <button id="salvar" onclick="salvarLista()" class="btn btn-primary btn-large" type="button">Pr&oacute;ximo</button>
             <button id="limpar" onclick="limparStorage()" class="btn btn-large" type="button">Cancelar</button>
         </p>
     </footer>
+    
 
     <script type="text/javascript">
         atualizar();
+        totalItensNaLista();
     </script>
 {% endblock %}
