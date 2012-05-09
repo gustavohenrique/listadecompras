@@ -23,7 +23,7 @@ admin.site.register(Preco, PrecoAdmin)
 
 class SupermercadoAdmin(admin.ModelAdmin):
     list_display = ('nome', 'ativo')
-    actions = ['ativar',]
+    actions = ['ativar']
 
     def ativar(self, request, queryset):
         rows_updated = queryset.update(ativo=True)

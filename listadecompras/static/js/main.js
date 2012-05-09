@@ -2,7 +2,7 @@ function atualizar() {
     var storage = sessionStorage;
 
     $('a.item').each(function(index) {
-        if (storage.getItem(this.id) != null) {
+        if (storage.getItem(this.id) !== null) {
             this.childNodes[0].setAttribute("class", "icon-ok");
         } else {
             this.childNodes[0].setAttribute("class", "icon-plus");
@@ -21,7 +21,7 @@ function adicionar(elemento) {
         value = storage.getItem(elemento.id);
         //elemento.parent().text()
 
-    if (value != null) {
+    if (value !== null) {
         storage.removeItem(elemento.id);
         elemento.childNodes[0].setAttribute("class", "icon-plus");
     }
@@ -46,17 +46,17 @@ function exibirProdutos(elemento) {
                 });
                 atualizar();
             },
-            error: function(data) {
+            error: function(retorno) {
                lista.append('<li>Nenhum produto na se&ccedil;&atilde;o</li>');
             }
         });
     }
 }
 
-function salvarLista() {
+function resumoDaLista() {
     var form = $('#listaDeProdutos'),
         storage = sessionStorage,
-        listaDeIds = new Array();
+        listaDeIds = [];
 
     for (i = 0; i < storage.length; i++) {
         listaDeIds.push(storage.key(i));
@@ -67,10 +67,31 @@ function salvarLista() {
 
 function limparStorage() {
     sessionStorage.clear();
-    history.go(0);
 }
 
 function teclaSoPodeSerNumero(evt) {
     var charCode = (evt.which) ? evt.which : evt.keyCode;
     return ! (charCode > 31 && (charCode < 48 || charCode > 57));
 }
+
+function salvarLista() {
+    var data = $('input[type=text].quantidade').serializeArray();
+
+    if (data.length > 0) {
+
+        $.ajax({
+            url: '/lista/salvar/',
+            type: 'POST',
+            data: data,
+            success: function(retorno) {
+                limparStorage();
+                window.location.href = retorno.url;
+            },
+            error: function(retorno) {
+               alert('Houve um erro ao salvar a lista. Crie outra!');
+            }
+        });
+    }
+}
+
+

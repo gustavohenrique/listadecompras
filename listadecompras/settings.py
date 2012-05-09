@@ -29,6 +29,8 @@ TIME_ZONE = 'America/Sao_Paulo'
 LANGUAGE_CODE = 'pt-br'
 
 SITE_ID = 1
+SITE_BASE_URL = 'http://localhost:8000'
+LISTA_BASE_URL = '%s/lista/exibir' % SITE_BASE_URL
 
 USE_I18N = True
 

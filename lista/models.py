@@ -43,3 +43,19 @@ class Preco(models.Model):
     class Meta:
         unique_together = ('supermercado', 'produto', 'valor')
         ordering = ['supermercado', '-atualizacao']
+
+
+class Lista(models.Model):
+    supermercado = models.ForeignKey(Supermercado)
+    produto = models.ForeignKey(Produto)
+    nome = models.CharField(max_length=20)
+    preco_unitario = models.DecimalField(max_digits=12, decimal_places=2)
+    quantidade = models.PositiveSmallIntegerField()
+    criada_em = models.DateField(auto_now_add=True)
+
+    def __unicode__(self):
+        return '%s' % self.criada_em
+
+    @property
+    def preco_final(self):
+        return '%s' % (self.preco_unitario * self.quantidade)

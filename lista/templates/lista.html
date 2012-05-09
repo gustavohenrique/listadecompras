@@ -2,7 +2,6 @@
 
 {% block extra_head %}
     <script src="{{ STATIC_URL }}js/main.js"></script>
-    <script src="{{ STATIC_URL }}js/ajax_django.js"></script>
     <script>
         function paginaPrincipal() {
             window.location.href='{% url lista-resumo %}';
@@ -18,7 +17,7 @@
                 <tr>
                     <th rowspan="2">Item</th>
                     <th rowspan="2" width="20">Qtd</th>
-                    <th rowspan="1" colspan="{{ supermercados|length }}">Pre&ccedil;o unit&aacute;rio em R$</th>
+                    <th rowspan="1" colspan="{{ supermercados|length }}">Pre&ccedil;os em R$</th>
                 </tr>
                 <tr>
 				    {% for supermercado in supermercados %}
@@ -33,7 +32,7 @@
 							{% for preco in item %}
 								{% if forloop.first %}
 									<td>{{ preco.produto }}</td>
-                                    <td><input id="{{ preco.id }}" name="{{ preco.id }}" type="text" class="input-mini quantidade" value="1" onkeypress="return teclaSoPodeSerNumero(event)" maxlength="4"></td>
+                                    <td>{{ lista.</td>
 								{% endif %}
                                 {% if preco.supermercado.ativo %}
     								<td class="price">
@@ -60,7 +59,7 @@
     <footer class="container-fluid">
         <a href="{% url lista-index %}" id="logo">&nbsp;listadecompras.net</a>
         <p>
-            <button id="salvar" onclick="salvarLista()" class="btn btn-primary btn-large" type="button">Finalizar</button>
+            <button id="salvar" onclick="paginaPrincipal()" class="btn btn-primary btn-large" type="button">Finalizar</button>
             <button id="voltar" onclick="paginaPrincipal()" class="btn btn-large" type="button">Voltar</button>
             <button id="limpar" onclick="limparStorage(); paginaPrincipal()" class="btn btn-large" type="button">Nova Lista</button>
         </p>
