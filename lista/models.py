@@ -56,6 +56,10 @@ class Lista(models.Model):
     def __unicode__(self):
         return '%s' % self.criada_em
 
+    class Meta:
+        unique_together = ('produto', 'nome')
+        ordering = ['criada_em', 'produto']
+
     @property
     def preco_final(self):
         return '%s' % (self.preco_unitario * self.quantidade)

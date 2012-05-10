@@ -26,28 +26,20 @@
                 </tr>
             </thead>
             <tbody>
-				{% for item in lista %}
-					{% if item|length > 0 %}
-						<tr>
-							{% for preco in item %}
-								{% if forloop.first %}
-									<td>{{ preco.produto }}</td>
-                                    <td>{{ lista.</td>
-								{% endif %}
-                                {% if preco.supermercado.ativo %}
-    								<td class="price">
-      								    {% if preco.valor > 0 %}
-    									    {{ preco.valor }}
-    									{% else %}
-    									    -
-    								    {% endif %}
-    								</td>
-                                {% else %}<td></td>
-                                {% endif %}
-							{% endfor %}
-						</tr>
-					{% endif %}
-				{% endfor %}
+                {% for secao in secoes %}
+                    <tr><td>{{ secao }}</td></tr>
+
+                    {% for lista in secao %}
+                        <td>{{ lista.produto }}</td>
+                        <td>{{ lista.quantidade }}</td>
+                        
+                        {% for s in lista.supermercados %}
+                            <td class="price">{{ preco.valor }}</td>
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+
+				
             </tbody>
         </table>
 
