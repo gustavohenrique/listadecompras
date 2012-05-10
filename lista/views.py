@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.core import serializers
 
 from lista.models import Secao, Produto, Preco, Supermercado, Lista
+from lista.domain import ListaDeCompras
 
 
 def index(request):
@@ -63,10 +64,9 @@ def salvar(request):
 
 def exibir(request, lista_nome):
     listas = Lista.objects.filter(nome=lista_nome)
-    for lista in listas:
-        supermercado = lista.supermercado
-
-    return HttpResponse(listas)
+    lista_calculada = ListaDeCompras().exibir(listas)
+    context = {'lista': lista_calculada}
+    return direct_to_template(request, 'lista.html', context)
 
 
 def produtos(request, secao_id):

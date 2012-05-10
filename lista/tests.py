@@ -28,9 +28,8 @@ class ListaDeComprasTest(TestCase):
         listas = [l1, l2, l3, l4, l5, l6]
 
         retorno_esperado = {
-            'pepsi': {'guanabara': 2, 'prezunic': 6, 'extra': 2},
-            'biscoito': {'guanabara': 4, 'prezunic': 3, 'extra': 3}
+            'pepsi': {'guanabara': '2', 'prezunic': '6', 'extra': '2'},
+            'biscoito': {'guanabara': '4', 'prezunic': '3', 'extra': '3'}
         }
 
-        lista_de_compras = ListaDeCompras()
-        self.assertEquals(lista_de_compras.resumo(listas), retorno_esperado)
+        self.assertEquals(ListaDeCompras().exibir(listas), retorno_esperado)
