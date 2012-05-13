@@ -13,7 +13,7 @@
 {% block content %}
     <section>
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered tabela-resumo">
             <thead>
                 <tr>
                     <th rowspan="2">Item</th>
@@ -33,12 +33,12 @@
 							{% for preco in item %}
 								{% if forloop.first %}
 									<td>{{ preco.produto }}</td>
-                                    <td><input id="{{ preco.id }}" name="{{ preco.id }}" type="text" class="input-mini quantidade" value="1" onkeypress="return teclaSoPodeSerNumero(event)" maxlength="4"></td>
+                                    <td><input id="{{ preco.produto.id }}" name="{{ preco.produto.id }}" type="text" class="input-mini quantidade" value="1" onkeypress="return teclaSoPodeSerNumero(event)" maxlength="4"></td>
 								{% endif %}
                                 {% if preco.supermercado.ativo %}
     								<td class="price">
-      								    {% if preco.valor > 0 %}
-    									    {{ preco.valor }}
+      								    {% if preco.preco > 0 %}
+    									    {{ preco.preco }}
     									{% else %}
     									    -
     								    {% endif %}

@@ -9,27 +9,42 @@ from lista.domain import ListaDeCompras
 
 class ListaDeComprasTest(TestCase):
 
-    def test_obter_resumo_das_listas(self):
+    def test_obter_lista_de_compras_com_preco_x_quantidade_por_produto(self):
+        self.maxDiff = None
+        bebidas = mommy.make_one(Secao, nome='bebidas')
+        biscoitos = mommy.make_one(Secao, nome='biscoitos e bomboniere')
+
         guanabara = mommy.make_one(Supermercado, nome='guanabara')
         prezunic = mommy.make_one(Supermercado, nome='prezunic')
         extra = mommy.make_one(Supermercado, nome='extra')
 
-        pepsi = mommy.make_one(Produto, nome='pepsi')
-        l1 = mommy.make_one(Lista, produto=pepsi, supermercado=guanabara, preco_unitario=2, quantidade=1)
-        l2 = mommy.make_one(Lista, produto=pepsi, supermercado=prezunic, preco_unitario=6, quantidade=1)
-        l3 = mommy.make_one(Lista, produto=pepsi, supermercado=extra, preco_unitario=1, quantidade=2)
+        pepsi = mommy.make_one(Produto, nome='pepsi', secoes=[bebidas])
+        l1 = mommy.make_one(Cotacao, codigo='abcd', produto=pepsi, supermercado=guanabara, preco=2, quantidade=2)
+        l2 = mommy.make_one(Cotacao, codigo='abcd', produto=pepsi, supermercado=prezunic, preco=6, quantidade=2)
+        l3 = mommy.make_one(Cotacao, codigo='abcd', produto=pepsi, supermercado=extra, preco=1, quantidade=2)
 
-        biscoito = mommy.make_one(Produto, nome='biscoito')
+        guarana = mommy.make_one(Produto, nome='guarana', secoes=[bebidas])
 
-        l4 = mommy.make_one(Lista, produto=biscoito, supermercado=guanabara, preco_unitario=2, quantidade=2)
-        l5 = mommy.make_one(Lista, produto=biscoito, supermercado=prezunic, preco_unitario=1, quantidade=3)
-        l6 = mommy.make_one(Lista, produto=biscoito, supermercado=extra, preco_unitario=3, quantidade=1)
+        l4 = mommy.make_one(Cotacao, codigo='efgh', produto=guarana, supermercado=guanabara, preco=2, quantidade=3)
+        l5 = mommy.make_one(Cotacao, codigo='efgh', produto=guarana, supermercado=prezunic, preco=1, quantidade=3)
+        l6 = mommy.make_one(Cotacao, codigo='efgh', produto=guarana, supermercado=extra, preco=3, quantidade=3)
 
-        listas = [l1, l2, l3, l4, l5, l6]
+        passatempo = mommy.make_one(Produto, nome='passatempo', secoes=[biscoitos])
+
+        l7 = mommy.make_one(Cotacao, codigo='ijkl', produto=passatempo, supermercado=guanabara, preco=2, quantidade=1)
+        l8 = mommy.make_one(Cotacao, codigo='ijkl', produto=passatempo, supermercado=prezunic, preco=0, quantidade=1)
+        l9 = mommy.make_one(Cotacao, codigo='ijkl', produto=passatempo, supermercado=extra, preco=3, quantidade=1)
+
+        cotacoes = [l1, l2, l3, l4, l5, l6, l7, l8, l9]
 
         retorno_esperado = {
-            'pepsi': {'guanabara': '2', 'prezunic': '6', 'extra': '2'},
-            'biscoito': {'guanabara': '4', 'prezunic': '3', 'extra': '3'}
+            u'bebidas': [{
+                'produto': 'pepsi', 'quantidade': '2', 'precos': {'guanabara': '4', 'prezunic': '12', 'extra': '2'}},
+                {'produto': 'guarana', 'quantidade': '3', 'precos': {'guanabara': '4', 'prezunic': '3', 'extra': '3'}}
+            ],
+            u'biscoitos e bomboniere': [{
+                'produto': 'passatempo', 'quantidade': '1', 'precos': {'guanabara': '2', 'prezunic': '0', 'extra': '3'}
+            }]
         }
 
-        self.assertEquals(ListaDeCompras().exibir(listas), retorno_esperado)
+        self.assertEquals(ListaDeCompras().exibir(cotacoes), retorno_esperado)

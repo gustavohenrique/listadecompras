@@ -31,35 +31,35 @@ class Supermercado(models.Model):
         ordering = ['nome']
 
 
-class Preco(models.Model):
+class Precificacao(models.Model):
     supermercado = models.ForeignKey(Supermercado)
     produto = models.ForeignKey(Produto)
-    valor = models.DecimalField(max_digits=12, decimal_places=2)
+    preco = models.DecimalField(max_digits=12, decimal_places=2)
     atualizacao = models.DateField(auto_now=True, auto_now_add=True)
 
     def __unicode__(self):
-        return '%s' % self.valor
+        return '%s' % self.preco
 
     class Meta:
-        unique_together = ('supermercado', 'produto', 'valor')
+        unique_together = ('supermercado', 'produto', 'preco')
         ordering = ['supermercado', '-atualizacao']
+        verbose_name_plural = u'Precificações'
 
 
-class Lista(models.Model):
+class Cotacao(models.Model):
+    codigo = models.CharField(max_length=20)
+    quantidade = models.PositiveSmallIntegerField()
     supermercado = models.ForeignKey(Supermercado)
     produto = models.ForeignKey(Produto)
-    nome = models.CharField(max_length=20)
-    preco_unitario = models.DecimalField(max_digits=12, decimal_places=2)
-    quantidade = models.PositiveSmallIntegerField()
-    criada_em = models.DateField(auto_now_add=True)
+    preco = models.DecimalField(max_digits=12, decimal_places=2)
+    atualizacao = models.DateField(auto_now=True, auto_now_add=True)
 
     def __unicode__(self):
-        return '%s' % self.criada_em
+        return '%s' % self.codigo
 
     class Meta:
-        unique_together = ('produto', 'nome')
-        ordering = ['criada_em', 'produto']
+        ordering = ['atualizacao', 'produto']
 
     @property
     def preco_final(self):
-        return '%s' % (self.preco_unitario * self.quantidade)
+        return '%s' % (self.preco * self.quantidade)

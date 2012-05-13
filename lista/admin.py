@@ -3,22 +3,22 @@ from django.contrib import admin
 from lista.models import *
 
 
-class PrecoAdminInline(admin.TabularInline):
-    model = Preco
+class PrecificacaoAdminInline(admin.TabularInline):
+    model = Precificacao
 
 
 class ProdutoAdmin(admin.ModelAdmin):
     inlines = [
-        PrecoAdminInline,
+        PrecificacaoAdminInline,
     ]
 admin.site.register(Produto, ProdutoAdmin)
 
 
-class PrecoAdmin(admin.ModelAdmin):
-    list_display = ('produto', 'supermercado', 'valor', 'atualizacao')
+class PrecificacaoAdmin(admin.ModelAdmin):
+    list_display = ('produto', 'supermercado', 'preco', 'atualizacao')
     list_filter = ('supermercado', 'atualizacao')
     ordering = ('produto', 'supermercado')
-admin.site.register(Preco, PrecoAdmin)
+admin.site.register(Precificacao, PrecificacaoAdmin)
 
 
 class SupermercadoAdmin(admin.ModelAdmin):

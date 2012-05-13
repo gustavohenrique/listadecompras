@@ -26,20 +26,24 @@
                 </tr>
             </thead>
             <tbody>
-                {% for secao in secoes %}
-                    <tr><td>{{ secao }}</td></tr>
+                {% for secao, lista in lista_de_compras.items %}
+                    <tr><td colspan="3">{{ secao }}</td></tr>
 
-                    {% for lista in secao %}
-                        <td>{{ lista.produto }}</td>
+                    {% for produto, precos in lista %}
+                        <td>{{ produto }}</td>
                         <td>{{ lista.quantidade }}</td>
                         
                         {% for s in lista.supermercados %}
-                            <td class="price">{{ preco.valor }}</td>
+                            <td class="price">
+                                {% if lista.preco_final > 0 %}
+                                    {{ lista.preco_final }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         {% endfor %}
                     {% endfor %}
                 {% endfor %}
-
-				
             </tbody>
         </table>
 
