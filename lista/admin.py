@@ -8,6 +8,7 @@ class PrecificacaoAdminInline(admin.TabularInline):
 
 
 class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nome')
     inlines = [
         PrecificacaoAdminInline,
     ]
@@ -35,3 +36,4 @@ admin.site.register(Supermercado, SupermercadoAdmin)
 
 
 admin.site.register(Secao)
+admin.site.register(Cotacao)

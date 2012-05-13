@@ -38,13 +38,13 @@ class ListaDeComprasTest(TestCase):
         cotacoes = [l1, l2, l3, l4, l5, l6, l7, l8, l9]
 
         retorno_esperado = {
-            u'bebidas': [{
-                'produto': 'pepsi', 'quantidade': '2', 'precos': {'guanabara': '4', 'prezunic': '12', 'extra': '2'}},
-                {'produto': 'guarana', 'quantidade': '3', 'precos': {'guanabara': '4', 'prezunic': '3', 'extra': '3'}}
-            ],
-            u'biscoitos e bomboniere': [{
-                'produto': 'passatempo', 'quantidade': '1', 'precos': {'guanabara': '2', 'prezunic': '0', 'extra': '3'}
-            }]
+            u'bebidas': {
+                'pepsi': {'quantidade': 2, 'precos': {'guanabara': '4', 'prezunic': '12', 'extra': '2'}},
+                'guarana': {'quantidade': 3, 'precos': {'guanabara': '6', 'prezunic': '3', 'extra': '9'}}
+            },
+            u'biscoitos e bomboniere': {
+                'passatempo': {'quantidade': 1, 'precos': {'guanabara': '2', 'prezunic': '0', 'extra': '3'}}
+            }
         }
 
         self.assertEquals(ListaDeCompras().exibir(cotacoes), retorno_esperado)

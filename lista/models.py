@@ -47,10 +47,10 @@ class Precificacao(models.Model):
 
 
 class Cotacao(models.Model):
-    codigo = models.CharField(max_length=20)
-    quantidade = models.PositiveSmallIntegerField()
     supermercado = models.ForeignKey(Supermercado)
     produto = models.ForeignKey(Produto)
+    codigo = models.CharField(max_length=20)
+    quantidade = models.PositiveSmallIntegerField()
     preco = models.DecimalField(max_digits=12, decimal_places=2)
     atualizacao = models.DateField(auto_now=True, auto_now_add=True)
 

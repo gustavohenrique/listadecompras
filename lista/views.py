@@ -38,7 +38,6 @@ def salvar(request):
         for produto_id in produtos:
             try:
                 quantidade = request.POST.get(produto_id)
-
                 if int(quantidade) > 0:
                     produto = Produto.objects.get(pk=produto_id)
                     precificacoes = Precificacao.objects.filter(produto=produto)
@@ -46,9 +45,10 @@ def salvar(request):
                     for precificacao in precificacoes:
                         cotacao = Cotacao()
                         cotacao.supermercado = precificacao.supermercado
-                        cotacao.preco_unitario = precificacao.preco
-                        cotacao.quantidade = quantidade
+                        cotacao.produto = precificacao.produto
                         cotacao.codigo = codigo
+                        cotacao.quantidade = quantidade
+                        cotacao.preco = precificacao.preco
                         cotacao.save()
             except:
                 pass

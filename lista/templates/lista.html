@@ -12,7 +12,7 @@
 {% block content %}
     <section>
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered tabela-resumo">
             <thead>
                 <tr>
                     <th rowspan="2">Item</th>
@@ -26,22 +26,24 @@
                 </tr>
             </thead>
             <tbody>
-                {% for secao, lista in lista_de_compras.items %}
-                    <tr><td colspan="3">{{ secao }}</td></tr>
+                {% for secao, produtos in lista_de_compras.items %}
+                    <tr><td colspan="2"><h2>{{ secao }}</h2></td><td colspan="{{ supermercados|length }}">&nbsp;</td></tr>
 
-                    {% for produto, precos in lista %}
+                    {% for produto, dados in produtos.items %}
+                    <tr>
                         <td>{{ produto }}</td>
-                        <td>{{ lista.quantidade }}</td>
+                        <td>{{ dados.quantidade }}</td>
                         
-                        {% for s in lista.supermercados %}
+                        {% for supermercado, preco in dados.precos.items %}
                             <td class="price">
-                                {% if lista.preco_final > 0 %}
-                                    {{ lista.preco_final }}
+                                {% if preco > 0 %}
+                                    {{ preco }}
                                 {% else %}
                                     -
                                 {% endif %}
                             </td>
                         {% endfor %}
+                    </tr>
                     {% endfor %}
                 {% endfor %}
             </tbody>
@@ -55,9 +57,7 @@
     <footer class="container-fluid">
         <a href="{% url lista-index %}" id="logo">&nbsp;listadecompras.net</a>
         <p>
-            <button id="salvar" onclick="paginaPrincipal()" class="btn btn-primary btn-large" type="button">Finalizar</button>
-            <button id="voltar" onclick="paginaPrincipal()" class="btn btn-large" type="button">Voltar</button>
-            <button id="limpar" onclick="limparStorage(); paginaPrincipal()" class="btn btn-large" type="button">Nova Lista</button>
+            <button id="limpar" onclick="paginaPrincipal()" class="btn btn-primary btn-large" type="button">Nova Lista</button>
         </p>
     </footer>
 {% endblock %}
