@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.conf import settings
 
 
 class Secao(models.Model):
@@ -59,6 +60,9 @@ class Cotacao(models.Model):
 
     class Meta:
         ordering = ['atualizacao', 'produto']
+
+    def get_absolute_url(self):
+        return '%s/%s' % (settings.LISTA_BASE_URL, self.codigo)
 
     @property
     def preco_final(self):

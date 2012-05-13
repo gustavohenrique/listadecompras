@@ -82,6 +82,12 @@ def produtos(request, secao_id):
         raise Http404
 
 
+def recentes(request):
+    cotacoes = Cotacao.objects.all()
+    context = {'recentes': ListaDeCompras().recentes(cotacoes)}
+    return direct_to_template(request, 'recentes.html', context)
+
+
 def _pega_identificador_unico():
     from datetime import datetime
     from django.utils.http import int_to_base36

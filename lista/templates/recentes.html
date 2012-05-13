@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <section>
+
+        <table class="table table-bordered tabela-resumo">
+            <thead>
+                <tr>
+                    <th>Lista</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+				{% for uri, data in recentes.items %}
+					<tr>
+                        <td><a href="{{ uri }}" title="Clique para ver a lista">{{ uri }}</a></td>
+                        <td>{{ data }}</td>
+                    </tr>
+				{% endfor %}
+            </tbody>
+        </table>
+
+    </section>
+
+{% endblock %}
+
+{% block footer %}
+    <footer class="container-fluid">
+        <a href="{% url lista-index %}" id="logo">&nbsp;listadecompras.net</a>
+        <p>
+            <button id="limpar" onclick="paginaPrincipal()" class="btn btn-primary btn-large" type="button">Nova Lista</button>
+        </p>
+    </footer>
+{% endblock %}

@@ -19,3 +19,9 @@ class ListaDeCompras(object):
             precos = produtos.get(nome_produto).get('precos')
             precos.update({cotacao.supermercado.nome: cotacao.preco_final})
         return retorno
+
+    def recentes(self, cotacoes):
+        retorno = {}
+        for cotacao in cotacoes:
+            retorno.update({cotacao.get_absolute_url(): cotacao.atualizacao})
+        return retorno
