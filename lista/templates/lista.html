@@ -21,11 +21,11 @@
             </thead>
             <tbody>
                 {% for secao, produtos in lista_de_compras.items %}
-                    <tr><td colspan="2"><h2>{{ secao }}</h2></td></tr>
+                    <tr><td colspan="2"><h3>{{ secao }}</h3></td></tr>
 
                     {% for produto, dados in produtos.items %}
                         <tr>
-                            <td>{{ produto }}</td>
+                            <td id="item{{ dados.id }}" onclick="riscar(this)">{{ produto }}</td>
                             <td>{{ dados.quantidade }}</td>
                         </tr>
                     {% endfor %}

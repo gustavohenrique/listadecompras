@@ -35,11 +35,11 @@ class ListaDeComprasTest(TestCase):
 
         retorno_esperado = {
             u'bebidas': {
-                'pepsi': {'quantidade': 2},
-                'guarana': {'quantidade': 3}
+                'pepsi': {'id': 1, 'quantidade': 2},
+                'guarana': {'id': 2, 'quantidade': 3}
             },
             u'biscoitos e bomboniere': {
-                'passatempo': {'quantidade': 1}
+                'passatempo': {'id': 3, 'quantidade': 1}
             }
         }
 

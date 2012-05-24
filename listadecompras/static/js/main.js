@@ -94,4 +94,6 @@ function finalizarLista() {
     }
 }
 
-
+function riscar(elemento) {
+    $('#'+elemento.id).toggleClass('riscado');
+}

@@ -12,31 +12,21 @@
 
         <form id="listaDeProdutos" method="POST" action="{% url lista-resumo %}">
             <fieldset>
-
                 {% csrf_token %}
 
-                <div class="well">
-                    <select id="grupos" onchange="exibirProdutos(this)">
-                        <option value="0">Se&ccedil;&atilde;o</option>
-                        {% for secao in secoes %}
-                            <option value="{{ secao.id }}">{{ secao.nome }}</option>
-                        {% empty %}
-                            <option value="0">Nenhuma se&ccedil;&atilde;o cadastrada</option>
-                        {% endfor %}
-                    </select>
-                    <div class="row-fluid">
-
-                        <div class="span6">
-                            <div class="control-group">
-                                <div class="controls">
-                                    <ul id="produtos" class="table table-bordered table-striped">
-                                        <li>Selecione uma se&ccedil;&atilde;o acima.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                <select id="grupos" onchange="exibirProdutos(this)">
+                    <option value="0">Se&ccedil;&atilde;o</option>
+                    {% for secao in secoes %}
+                        <option value="{{ secao.id }}">{{ secao.nome }}</option>
+                    {% empty %}
+                        <option value="0">Nenhuma se&ccedil;&atilde;o cadastrada</option>
+                    {% endfor %}
+                </select>
+                
+                <ul id="produtos" class="table table-bordered table-striped">
+                    <li>Selecione uma se&ccedil;&atilde;o acima.</li>
+                </ul>
+     
                 </div>
 
             </fieldset>
@@ -47,7 +37,6 @@
 
 {% block footer %}
     <footer class="container-fluid">
-        <a href="{% url lista-index %}" id="logo">&nbsp;listadecompras.net</a>
         <p style="float:right">
             <button id="salvar" onclick="resumoDaLista()" class="btn btn-primary btn-large" type="button">Pr&oacute;ximo</button>
             <button id="limpar" onclick="limparStorage()" class="btn btn-large" type="button">Cancelar</button>

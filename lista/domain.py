@@ -16,7 +16,7 @@ class ListaDeCompras(object):
             produtos = retorno.get(nome_secao)
             nome_produto = lista.produto.nome
             if not nome_produto in produtos:
-                produtos.update({nome_produto: {'quantidade': lista.quantidade}})
+                produtos.update({nome_produto: {'id': lista.produto.id, 'quantidade': lista.quantidade}})
 
         return retorno
 
