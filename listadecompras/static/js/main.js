@@ -74,13 +74,13 @@ function teclaSoPodeSerNumero(evt) {
     return ! (charCode > 31 && (charCode < 48 || charCode > 57));
 }
 
-function salvarLista() {
+function finalizarLista() {
     var data = $('input[type=text].quantidade').serializeArray();
 
     if (data.length > 0) {
 
         $.ajax({
-            url: '/lista/salvar/',
+            url: '/lista/finalizar/',
             type: 'POST',
             data: data,
             success: function(retorno) {

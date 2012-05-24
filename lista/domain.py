@@ -1,27 +1,31 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
+from django.utils.http import int_to_base36
 
 
 class ListaDeCompras(object):
 
-    def exibir(self, cotacoes):
+    def exibir(self, listas):
         retorno = {}
-        for cotacao in cotacoes:
-            nome_secao = cotacao.produto.secoes.all()[0].nome
+        for lista in listas:
+            nome_secao = lista.produto.secoes.all()[0].nome
 
             if not nome_secao in retorno:
                 retorno.update({nome_secao: {}})
 
             produtos = retorno.get(nome_secao)
-            nome_produto = cotacao.produto.nome
+            nome_produto = lista.produto.nome
             if not nome_produto in produtos:
-                produtos.update({nome_produto: {'quantidade': cotacao.quantidade, 'precos': {}}})
+                produtos.update({nome_produto: {'quantidade': lista.quantidade}})
 
-            precos = produtos.get(nome_produto).get('precos')
-            precos.update({cotacao.supermercado.nome: cotacao.preco_final})
         return retorno
 
-    def recentes(self, cotacoes):
+    def recentes(self, listas):
         retorno = {}
-        for cotacao in cotacoes:
-            retorno.update({cotacao.get_absolute_url(): cotacao.atualizacao})
+        for lista in listas:
+            retorno.update({lista.get_absolute_url(): lista.atualizacao})
         return retorno
+
+    def pega_identificador_unico(self):
+        miliseconds = datetime.now().microsecond
+        return int_to_base36(miliseconds)

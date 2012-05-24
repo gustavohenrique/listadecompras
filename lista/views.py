@@ -4,8 +4,10 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse
 from django.core import serializers
+from django.utils import simplejson
+from django.conf import settings
 
-from lista.models import Secao, Produto, Supermercado, Precificacao, Cotacao
+from lista.models import Secao, Produto, Lista
 from lista.domain import ListaDeCompras
 
 
@@ -17,44 +19,36 @@ def index(request):
 def resumo(request):
     if request.POST:
         lista_ids = request.POST.get('ids').split(',')
-        precos = []
+        lista = []
         for id in lista_ids:
             try:
                 pk = int(id)
                 produto = Produto.objects.get(pk=pk)
-                precos.append(Precificacao.objects.filter(produto=produto))
+                lista.append(produto)
             except:
                 pass
 
-        context = {'lista': precos, 'supermercados': Supermercado.objects.filter(ativo=True)}
-        return direct_to_template(request, 'resumo.html', context)
+        return direct_to_template(request, 'resumo.html', {'lista': lista})
     return HttpResponseRedirect(reverse('lista-index'))
 
 
-def salvar(request):
+def finalizar(request):
     if request.is_ajax() and request.method == 'POST':
         produtos = request.POST.keys()
-        codigo = _pega_identificador_unico()
+        codigo = ListaDeCompras().pega_identificador_unico()
         for produto_id in produtos:
             try:
                 quantidade = request.POST.get(produto_id)
                 if int(quantidade) > 0:
                     produto = Produto.objects.get(pk=produto_id)
-                    precificacoes = Precificacao.objects.filter(produto=produto)
 
-                    for precificacao in precificacoes:
-                        cotacao = Cotacao()
-                        cotacao.supermercado = precificacao.supermercado
-                        cotacao.produto = precificacao.produto
-                        cotacao.codigo = codigo
-                        cotacao.quantidade = quantidade
-                        cotacao.preco = precificacao.preco
-                        cotacao.save()
+                    lista = Lista()
+                    lista.produto = produto
+                    lista.quantidade = quantidade
+                    lista.codigo = codigo
+                    lista.save()
             except:
                 pass
-
-        from django.utils import simplejson
-        from django.conf import settings
 
         url = '/'.join([settings.LISTA_BASE_URL, codigo])
         json = simplejson.dumps({'url': url})
@@ -64,10 +58,10 @@ def salvar(request):
 
 
 def exibir(request, codigo):
-    cotacoes = Cotacao.objects.filter(codigo=codigo)
-    lista_de_compras = ListaDeCompras().exibir(cotacoes)
+    listas = Lista.objects.filter(codigo=codigo)
+    lista_de_compras = ListaDeCompras().exibir(listas)
 
-    context = {'lista_de_compras': lista_de_compras, 'supermercados': Supermercado.objects.filter(ativo=True)}
+    context = {'lista_de_compras': lista_de_compras}
     return direct_to_template(request, 'lista.html', context)
 
 
@@ -83,13 +77,9 @@ def produtos(request, secao_id):
 
 
 def recentes(request):
-    cotacoes = Cotacao.objects.all()
-    context = {'recentes': ListaDeCompras().recentes(cotacoes)}
+    listas = Lista.objects.all()
+    context = {'recentes': ListaDeCompras().recentes(listas)}
     return direct_to_template(request, 'recentes.html', context)
 
 
-def _pega_identificador_unico():
-    from datetime import datetime
-    from django.utils.http import int_to_base36
-    miliseconds = datetime.now().microsecond
-    return int_to_base36(miliseconds)
+

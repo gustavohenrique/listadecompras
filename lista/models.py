@@ -21,38 +21,10 @@ class Produto(models.Model):
         return self.nome
 
 
-class Supermercado(models.Model):
-    nome = models.CharField(unique=True, max_length=50)
-    ativo = models.BooleanField(default=True)
-
-    def __unicode__(self):
-        return self.nome
-
-    class Meta:
-        ordering = ['nome']
-
-
-class Precificacao(models.Model):
-    supermercado = models.ForeignKey(Supermercado)
-    produto = models.ForeignKey(Produto)
-    preco = models.DecimalField(max_digits=12, decimal_places=2)
-    atualizacao = models.DateField(auto_now=True, auto_now_add=True)
-
-    def __unicode__(self):
-        return '%s' % self.preco
-
-    class Meta:
-        unique_together = ('supermercado', 'produto', 'preco')
-        ordering = ['supermercado', '-atualizacao']
-        verbose_name_plural = u'Precificações'
-
-
-class Cotacao(models.Model):
-    supermercado = models.ForeignKey(Supermercado)
+class Lista(models.Model):
     produto = models.ForeignKey(Produto)
     codigo = models.CharField(max_length=20)
     quantidade = models.PositiveSmallIntegerField()
-    preco = models.DecimalField(max_digits=12, decimal_places=2)
     atualizacao = models.DateField(auto_now=True, auto_now_add=True)
 
     def __unicode__(self):
@@ -63,7 +35,3 @@ class Cotacao(models.Model):
 
     def get_absolute_url(self):
         return '%s/%s' % (settings.LISTA_BASE_URL, self.codigo)
-
-    @property
-    def preco_final(self):
-        return '%s' % (self.preco * self.quantidade)
