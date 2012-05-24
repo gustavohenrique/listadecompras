@@ -16,6 +16,12 @@ def index(request):
     return direct_to_template(request, 'index.html', context)
 
 
+def produtos(request, secao_id):
+    secao = get_object_or_404(Secao, pk=secao_id)
+    context = {'produtos': secao.produto_set.all(), 'secao': secao}
+    return direct_to_template(request, 'produtos.html', context)
+
+
 def resumo(request):
     if request.POST:
         lista_ids = request.POST.get('ids').split(',')
@@ -65,15 +71,15 @@ def exibir(request, codigo):
     return direct_to_template(request, 'lista.html', context)
 
 
-def produtos(request, secao_id):
-    secao = get_object_or_404(Secao, pk=secao_id)
-    produtos = secao.produto_set.all()
+# def produtos(request, secao_id):
+#     secao = get_object_or_404(Secao, pk=secao_id)
+#     produtos = secao.produto_set.all()
 
-    if produtos.count() > 0:
-        json = serializers.serialize('json', produtos, fields=('id', 'nome'))
-        return HttpResponse(json, mimetype='application/json')
-    else:
-        raise Http404
+#     if produtos.count() > 0:
+#         json = serializers.serialize('json', produtos, fields=('id', 'nome'))
+#         return HttpResponse(json, mimetype='application/json')
+#     else:
+#         raise Http404
 
 
 def recentes(request):

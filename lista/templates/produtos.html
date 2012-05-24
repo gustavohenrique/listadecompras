@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+    <script src="{{ STATIC_URL }}js/main.js"></script>
+{% endblock %}
+
+{% block content %}
+
+    <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider">{{ secao }}</li>
+        {% for produto in produtos %}
+            <li>{{ produto.nome }}</li>
+        {% empty %}
+            <li>Nenhum produto em {{ secao }}</li>
+        {% endfor %}
+    </ul>
+    
+{% endblock %}
+
+{% block footer %}
+    <a href="#" onclick="resumoDaLista()" data-role="button" data-icon="star">Pr&oacute;ximo</a>
+    <a href="#" onclick="limparStorage()" data-role="button" data-icon="star">Cancelar</a>
+
+    <script type="text/javascript">
+        //atualizar();
+        //totalItensNaLista();
+    </script>
+{% endblock %}

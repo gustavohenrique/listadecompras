@@ -3,43 +3,38 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="Stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" />
-    <link rel="Stylesheet" href="{{ STATIC_URL }}bootstrap/css/style.css" />
-    <link rel="Stylesheet" href="{{ STATIC_URL }}css/main.css" />
-    <link rel="Stylesheet" href="{{ STATIC_URL }}css/footer.css" />
+
+    <link rel="Stylesheet" href="{{ STATIC_URL }}jqmobile/jquery.mobile-1.1.0.min.css" />
 
     <script src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
+    <script src="{{ STATIC_URL }}jqmobile/jquery.mobile-1.1.0.min.js"></script>
 
     {% block extra_head %} {% endblock %}
 
     <title>listadecompras.net</title>
 </head>
 <body>
-    <!-- <div class="wrapper">
-        
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" href="{% url lista-index %}">&nbsp;listadecompras.net</a>
-                    
-                    <div class="nav-collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="{% url lista-index %}">Inicio</a></li>
-                            <li><a href="#">Contato</a></li>
-                        </ul>
-                     </div>
-                    
-                </div>
-            </div>
-        </div>
-        -->
-        
-        <div class="container-fluid">
-            {% block content %} {% endblock %}
-        </div>
-    
 
-    {% block footer %} {% endblock %}
+    <div data-role="page">
+
+        <div data-role="header">
+            <h1>listadecompras.net</h1>
+            <a data-icon="arrow-u" class="ui-btn-right" href="#home">Home</a>
+        </div><!-- /header -->
+
+
+
+        <div data-role="content">   
+            {% block content %} {% endblock %}     
+        </div><!-- /content -->
+
+        <div data-role="footer">
+            {% block footer %} {% endblock %}
+        </div>
+
+    </div><!-- /page -->
+
+    
 
 </body>
 </html>
