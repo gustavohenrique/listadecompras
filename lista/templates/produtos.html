@@ -9,7 +9,7 @@
     <ul data-role="listview" data-inset="true">
         <li data-role="list-divider">{{ secao }}</li>
         {% for produto in produtos %}
-            <li>{{ produto.nome }}</li>
+            <li id="{{ produto.id }}" class="produto" onclick="adicionar(this)"><a id="link{{ produto.id }}">{{ produto.nome }}</a></li>
         {% empty %}
             <li>Nenhum produto em {{ secao }}</li>
         {% endfor %}
@@ -18,11 +18,10 @@
 {% endblock %}
 
 {% block footer %}
-    <a href="#" onclick="resumoDaLista()" data-role="button" data-icon="star">Pr&oacute;ximo</a>
-    <a href="#" onclick="limparStorage()" data-role="button" data-icon="star">Cancelar</a>
+    <a href="{% url index %}" data-role="button" data-icon="back" data-iconpos="right" data-transition="slide">Voltar</a>
 
     <script type="text/javascript">
-        //atualizar();
+        atualizar();
         //totalItensNaLista();
     </script>
 {% endblock %}

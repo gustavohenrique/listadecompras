@@ -19,7 +19,7 @@
 
         <div data-role="header">
             <h1>listadecompras.net</h1>
-            <a data-icon="arrow-u" class="ui-btn-right" href="#home">Home</a>
+            <a class="ui-btn-right" data-iconpos="notext" data-icon="home" href="#">Home</a>
         </div><!-- /header -->
 
 
@@ -28,7 +28,7 @@
             {% block content %} {% endblock %}     
         </div><!-- /content -->
 
-        <div data-role="footer">
+        <div data-role="footer" class="ui-bar" data-position="fixed" style="text-align: center">
             {% block footer %} {% endblock %}
         </div>
 

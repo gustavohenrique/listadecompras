@@ -1,13 +1,12 @@
 function atualizar() {
     var storage = sessionStorage;
 
-    $('a.item').each(function(index) {
+    $('li.produto').each(function(index) {
         if (storage.getItem(this.id) !== null) {
-            this.childNodes[0].setAttribute("class", "icon-ok");
+            $(this).attr("data-icon", "check");
         } else {
-            this.childNodes[0].setAttribute("class", "icon-plus");
+            $(this).attr("data-icon", "plus");
         }
-
     });
 }
 
@@ -15,21 +14,25 @@ function totalItensNaLista() {
     $('#totalItensNaLista').html(sessionStorage.length);
 }
 
+function _trocaIcone(elemento, atual, novo) {
+    $('#' + elemento.id).data('icon', novo);
+    $('#' + elemento.id + ' .ui-icon').addClass('ui-icon-' + novo).removeClass('ui-icon-' + atual);
+}
+
 function adicionar(elemento) {
     var storage = sessionStorage,
-        produto = elemento.parentNode.textContent,
+        produto = $('#link'+elemento.id).text(),
         value = storage.getItem(elemento.id);
-        //elemento.parent().text()
-
+        
     if (value !== null) {
         storage.removeItem(elemento.id);
-        elemento.childNodes[0].setAttribute("class", "icon-plus");
+        _trocaIcone(elemento, 'check', 'plus');
     }
     else {
         storage.setItem(elemento.id, produto);
-        elemento.childNodes[0].setAttribute("class", "icon-ok");
+        _trocaIcone(elemento, 'plus', 'check');
     }
-    totalItensNaLista();
+    //totalItensNaLista();
 }
 
 function exibirProdutos(elemento) {
