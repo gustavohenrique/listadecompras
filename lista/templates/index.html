@@ -1,46 +1,28 @@
 {% extends 'base.html' %}
 
+
 {% block extra_head %}
-    <script src="{{ STATIC_URL }}js/main.js"></script>
+    <script src="{{ STATIC_URL }}js/ajax_django.js"></script>
 {% endblock %}
 
 {% block content %}
 
-    <ul data-role="listview" data-inset="true">
-        <li data-role="list-divider">Se&ccedil;&otilde;es</li>
-        {% for secao in secoes %}
-            <li><a href="{% url lista-produtos-por-secao secao.id %}">{{ secao.nome }}</a></li>
-        {% empty %}
-            <li>Nenhuma se&ccedil;&atilde;o cadastrada</li>
-        {% endfor %}
-    </ul>
-    <!--
-    <form id="listaDeProdutos" method="POST" action="{% url lista-resumo %}">
-        <fieldset>
-            {% csrf_token %}
+    <form id="listaDeProdutos" method="POST" action="{% url lista-finalizar %}">
+        {% csrf_token %}
 
-            <select id="grupos" onchange="exibirProdutos(this)">
-                <option value="0">Se&ccedil;&atilde;o</option>
-                {% for secao in secoes %}
-                    <option value="{{ secao.id }}">{{ secao.nome }}</option>
-                {% empty %}
-                    <option value="0">Nenhuma se&ccedil;&atilde;o cadastrada</option>
-                {% endfor %}
-            </select>
-
-            
-
-        </fieldset>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider">Se&ccedil;&otilde;es</li>
+            {% for secao in secoes %}
+                <li><a href="{% url lista-produtos-por-secao secao.id %}">{{ secao.nome }}</a></li>
+            {% empty %}
+                <li>Nenhuma se&ccedil;&atilde;o cadastrada</li>
+            {% endfor %}
+        </ul>
     </form>
--->
+
 {% endblock %}
 
 {% block footer %}
-    <a href="#" onclick="resumoDaLista()" data-role="button" data-icon="star">Pr&oacute;ximo</a>
-    <a href="#" onclick="limparStorage()" data-role="button" data-icon="star">Cancelar</a>
-
-    <script type="text/javascript">
-        //atualizar();
-        //totalItensNaLista();
-    </script>
+    <a href="#" onclick="finalizar()" data-role="button" data-icon="arrow-r" data-iconpos="right" data-transition="slide">Finalizar</a>
+    <a href="#" onclick="limparStorage()" data-role="button" data-icon="delete" data-iconpos="right" data-transition="slide">Cancelar</a>
 {% endblock %}

@@ -1,47 +1,32 @@
 {% extends 'base.html' %}
 
+
+{% load sort_dict %}
+
+
 {% block extra_head %}
-    <script src="{{ STATIC_URL }}js/main.js"></script>
-    <script>
-        function paginaPrincipal() {
-            window.location.href='{% url lista-resumo %}';
-        }
-    </script>
+<style type="text/css">
+a.riscado {
+    text-decoration: line-through;
+}
+</style>
 {% endblock %}
+
 
 {% block content %}
-    <section>
-
-        <table class="table table-bordered tabela-resumo">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th width="20">Qtd</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for secao, produtos in lista_de_compras.items %}
-                    <tr><td colspan="2"><h3>{{ secao }}</h3></td></tr>
-
-                    {% for produto, dados in produtos.items %}
-                        <tr>
-                            <td id="item{{ dados.id }}" onclick="riscar(this)">{{ produto }}</td>
-                            <td>{{ dados.quantidade }}</td>
-                        </tr>
-                    {% endfor %}
-                {% endfor %}
-            </tbody>
-        </table>
-
-    </section>
+    <ul data-role="listview" data-inset="true">
+        {% for secao, produtos in lista_de_compras.items|sortdict %}
+            <li data-role="list-divider">{{ secao }}</li>
+            {% for produto, dados in produtos.items|sortdict %}
+                <li data-icon="false"><a href="#" class="riscado" id="item{{ dados.id }}" onclick="riscar(this)">{{ produto }}</a></li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
 
 {% endblock %}
 
+
+
 {% block footer %}
-    <footer class="container-fluid">
-        <a href="{% url lista-index %}" id="logo">&nbsp;listadecompras.net</a>
-        <p>
-            <button id="limpar" onclick="paginaPrincipal()" class="btn btn-primary btn-large" type="button">Nova Lista</button>
-        </p>
-    </footer>
+    
 {% endblock %}

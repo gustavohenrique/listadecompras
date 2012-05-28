@@ -16,7 +16,7 @@ class ListaDeCompras(object):
             produtos = retorno.get(nome_secao)
             nome_produto = lista.produto.nome
             if not nome_produto in produtos:
-                produtos.update({nome_produto: {'id': lista.produto.id, 'quantidade': lista.quantidade}})
+                produtos.update({nome_produto: {'id': lista.produto.id}})
 
         return retorno
 
@@ -29,3 +29,9 @@ class ListaDeCompras(object):
     def pega_identificador_unico(self):
         miliseconds = datetime.now().microsecond
         return int_to_base36(miliseconds)
+
+    # def _sort(self, dicionario):
+    #     ordenado = {}
+    #     for key in sorted(dicionario.iterkeys(), reverse=True):
+    #         ordenado.update({key: dicionario[key]})
+    #     return ordenado

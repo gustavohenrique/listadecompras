@@ -8,6 +8,7 @@ class Secao(models.Model):
 
     class Meta:
         verbose_name_plural = u'Seções'
+        ordering = ['nome']
 
     def __unicode__(self):
         return self.nome
@@ -24,7 +25,6 @@ class Produto(models.Model):
 class Lista(models.Model):
     produto = models.ForeignKey(Produto)
     codigo = models.CharField(max_length=20)
-    quantidade = models.PositiveSmallIntegerField()
     atualizacao = models.DateField(auto_now=True, auto_now_add=True)
 
     def __unicode__(self):

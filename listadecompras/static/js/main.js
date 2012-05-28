@@ -100,3 +100,15 @@ function finalizarLista() {
 function riscar(elemento) {
     $('#'+elemento.id).toggleClass('riscado');
 }
+
+function finalizar() {
+    var form = $('#listaDeProdutos'),
+        storage = sessionStorage,
+        listaDeIds = [];
+
+    for (i = 0; i < storage.length; i++) {
+        listaDeIds.push(storage.key(i));
+    }
+    form.append('<input type="hidden" name="ids" value="' + listaDeIds.toString() + '">');
+    form.submit();
+}

@@ -39,34 +39,28 @@ def resumo(request):
 
 
 def finalizar(request):
-    if request.is_ajax() and request.method == 'POST':
-        produtos = request.POST.keys()
-        codigo = ListaDeCompras().pega_identificador_unico()
+    codigo = ListaDeCompras().pega_identificador_unico()
+    if request.method == 'POST':
+        produtos = request.POST.get('ids').split(',')
+
         for produto_id in produtos:
             try:
-                quantidade = request.POST.get(produto_id)
-                if int(quantidade) > 0:
-                    produto = Produto.objects.get(pk=produto_id)
+                produto = Produto.objects.get(pk=produto_id)
+                Lista.objects.create(produto=produto, codigo=codigo)
+            except Exception as e:
+                print e
 
-                    lista = Lista()
-                    lista.produto = produto
-                    lista.quantidade = quantidade
-                    lista.codigo = codigo
-                    lista.save()
-            except:
-                pass
-
-        url = '/'.join([settings.LISTA_BASE_URL, codigo])
-        json = simplejson.dumps({'url': url})
-        return HttpResponse(json, mimetype='application/json')
-
-    raise Http404
+        #url = '/'.join([settings.LISTA_BASE_URL, codigo])
+        #return HttpResponseRedirect(url)
+    return exibir(request, codigo)
 
 
 def exibir(request, codigo):
     listas = Lista.objects.filter(codigo=codigo)
-    lista_de_compras = ListaDeCompras().exibir(listas)
+    if len(listas) == 0:
+        raise Http404
 
+    lista_de_compras = ListaDeCompras().exibir(listas)
     context = {'lista_de_compras': lista_de_compras}
     return direct_to_template(request, 'lista.html', context)
 
@@ -86,6 +80,3 @@ def recentes(request):
     listas = Lista.objects.all()
     context = {'recentes': ListaDeCompras().recentes(listas)}
     return direct_to_template(request, 'recentes.html', context)
-
-
-
