@@ -6,8 +6,8 @@
 
 {% block extra_head %}
 <style type="text/css">
-a.riscado {
-    text-decoration: line-through;
+a.ui-link-inherit.riscado {
+    text-decoration: line-through !important;
 }
 </style>
 {% endblock %}
@@ -18,7 +18,7 @@ a.riscado {
         {% for secao, produtos in lista_de_compras.items|sortdict %}
             <li data-role="list-divider">{{ secao }}</li>
             {% for produto, dados in produtos.items|sortdict %}
-                <li data-icon="false"><a href="#" class="riscado" id="item{{ dados.id }}" onclick="riscar(this)">{{ produto }}</a></li>
+                <li data-icon="false"><a href="#" id="item{{ dados.id }}" onclick="riscar(this)">{{ produto }}</a></li>
             {% endfor %}
         {% endfor %}
     </ul>
